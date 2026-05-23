@@ -1,0 +1,183 @@
+aid: transcend-io
+name: Transcend
+description: Transcend is a privacy and data permissioning platform that helps enterprises decide in real time whether customer data can be used for a given purpose. The platform spans data discovery and inventory, data subject request automation, consent and preference management, privacy assessments, and an AI governance layer that enforces policies at the source. Transcend's Sombra security gateway runs inside customer environments so Transcend itself never accesses customer data or API keys. Developers integrate via a REST API documented with OpenAPI, a GraphQL API for non-personal data and configuration tasks, an official CLI distributed on npm, and a transcend.yml configuration file that lets teams manage their data map as code. The platform serves AI, consumer, healthcare, fintech, media, and B2B enterprises.
+type: Index
+position: Provider
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Transcend
+  - Privacy
+  - Data Governance
+  - Consent
+  - Preference Management
+  - DSR
+  - Data Inventory
+  - AI Governance
+  - GDPR
+  - CCPA
+  - Compliance
+  - Webhooks
+  - GraphQL
+url: https://raw.githubusercontent.com/api-evangelist/transcend-io/refs/heads/main/apis.yml
+created: '2026-05-23'
+modified: '2026-05-23'
+specificationVersion: '0.20'
+apis:
+  - aid: transcend-io:transcend-api
+    name: Transcend API
+    description: REST API that powers Transcend's privacy operations, including data subject requests, preflight identifier enrichment, custom integrations for access and erasure, preferences and consent management, an LLM classifier for NER and text classification, public JWT signing keys, and webhooks for DSR jobs, preflight requests, and consent manager deployment. The API is described by an OpenAPI specification and is available on both EU and US backends, with the EU backend as the CLI default.
+    humanURL: https://docs.transcend.io/docs/api-reference
+    baseURL: https://api.transcend.io
+    tags:
+      - DSR
+      - Consent
+      - Preferences
+      - Webhooks
+      - LLM Classifier
+      - Custom Integration
+    properties:
+      - type: Documentation
+        url: https://docs.transcend.io/docs/api-reference
+      - type: OpenAPI
+        url: https://docs.transcend.io/api/oas.json
+      - type: OpenAPI30
+        url: https://docs.transcend.io/api/oas.json?v=3.0
+      - type: USBackend
+        url: https://api.us.transcend.io
+      - type: Webhooks
+        url: https://docs.transcend.io/docs/api-reference
+      - type: Status
+        url: https://status.transcend.io
+      - type: SignUp
+        url: https://app.transcend.io/login
+    features:
+      - name: Data Subject Request Automation
+        description: Submit DSRs, poll status, retrieve download keys, and list request identifiers programmatically.
+      - name: Preflight Identifier Enrichment
+        description: Enrich identifiers before processing requests to ensure clean fulfillment downstream.
+      - name: Custom Integration Handling
+        description: Stream access request files, chunked or bulk JSON uploads, and manage erasure, opt-in, and opt-out requests through your own systems.
+      - name: Consent and Preference Management
+        description: Server-side and client-side preference APIs that keep consent in sync across channels and identifiers.
+      - name: LLM Classifier
+        description: Text classification and Named Entity Recognition for unstructured data discovery.
+      - name: Public JWT Keys
+        description: Exposes JWT signing keys so partners can verify Transcend-issued tokens.
+      - name: Webhooks
+        description: Event notifications for DSR jobs, preflight requests, and consent manager deployment.
+      - name: OpenAPI Specification
+        description: Machine-readable OpenAPI 3.1 and 3.0 specs available for SDK and tooling generation.
+    useCases:
+      - name: Automated DSR Fulfillment
+        description: Receive access and erasure requests and fulfill them across internal systems with custom integrations.
+      - name: Unified Preference Store
+        description: Sync customer marketing and privacy preferences across web, mobile, and backend systems.
+      - name: AI Data Permissioning
+        description: Decide whether customer data can be used for AI training or inference in real time.
+      - name: Consent Logging
+        description: Capture and prove consent across regions and regulations like GDPR and CCPA.
+      - name: Data Map as Code
+        description: Define data silos and inventory in transcend.yml and sync to the admin dashboard via CLI.
+    integrations:
+      - name: Salesforce
+      - name: HubSpot
+      - name: Snowflake
+      - name: BigQuery
+      - name: Databricks
+      - name: AWS
+      - name: GCP
+      - name: Azure
+      - name: Segment
+      - name: Slack
+      - name: Zendesk
+      - name: Stripe
+    authentication:
+      - type: API Key
+        description: API key authentication issued from the Transcend admin dashboard for server-side calls.
+      - type: JWT
+        description: JWT-based authentication supported, with public signing keys exposed via the API.
+  - aid: transcend-io:transcend-graphql-api
+    name: Transcend GraphQL API
+    description: GraphQL API and Developer Tools wrapper for non-personal data tasks such as creating data silos, account management, and other configuration operations on the Transcend platform.
+    humanURL: https://docs.transcend.io/docs/api-reference
+    tags:
+      - GraphQL
+      - Data Silos
+      - Configuration
+      - Admin
+    properties:
+      - type: Documentation
+        url: https://docs.transcend.io/docs/api-reference
+      - type: GraphQL
+        url: https://docs.transcend.io/docs/api-reference
+    features:
+      - name: Data Silo Management
+        description: Create and configure data silos that represent the systems in your data map.
+      - name: Account Management
+        description: Manage accounts, roles, and access to the Transcend platform.
+      - name: Configuration as Code
+        description: Pair with transcend.yml and the CLI to manage Transcend configuration through version control.
+    useCases:
+      - name: Programmatic Onboarding
+        description: Provision Transcend accounts and data silos at scale for large enterprises.
+      - name: GitOps for Privacy
+        description: Treat Transcend configuration as code and review changes through pull requests.
+    integrations:
+      - name: Transcend CLI
+      - name: GitHub
+      - name: GitLab
+    authentication:
+      - type: API Key
+        description: API key authentication for GraphQL operations against the Transcend admin backend.
+  - aid: transcend-io:transcend-cli
+    name: Transcend CLI
+    description: Official command line interface for Transcend, distributed on npm as @transcend-io/cli. Supports schema sync, transcend.yml-based data map definitions, and a wide range of platform operations. Defaults to the EU backend, with a flag to target the US backend.
+    humanURL: https://github.com/transcend-io/cli
+    tags:
+      - CLI
+      - npm
+      - Configuration
+      - Data Map
+    properties:
+      - type: SourceCode
+        url: https://github.com/transcend-io/cli
+      - type: PackageManager
+        url: https://www.npmjs.com/package/@transcend-io/cli
+      - type: Documentation
+        url: https://docs.transcend.io/docs/api-reference
+    features:
+      - name: transcend.yml Sync
+        description: Define data silos, integrations, and other config in YAML and sync back to the admin dashboard.
+      - name: Schema Sync
+        description: Sync data schemas between source systems and the Transcend data inventory.
+      - name: Multi-Region Support
+        description: Target the EU or US backend via the transcendUrl flag.
+    useCases:
+      - name: CI/CD Privacy Configuration
+        description: Apply Transcend configuration as part of CI/CD pipelines using the CLI.
+      - name: Bulk Operations
+        description: Run bulk admin operations against the Transcend platform from scripts.
+    integrations:
+      - name: GitHub Actions
+      - name: GitLab CI
+      - name: npm
+    authentication:
+      - type: API Key
+        description: API key passed via environment variable or flag to authenticate CLI calls.
+common:
+  - type: Website
+    url: https://transcend.io/
+  - type: Documentation
+    url: https://docs.transcend.io/docs
+  - type: OpenAPI
+    url: https://docs.transcend.io/api/oas.json
+  - type: SourceCode
+    url: https://github.com/transcend-io
+  - type: Status
+    url: https://status.transcend.io
+  - type: SignUp
+    url: https://app.transcend.io/login
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

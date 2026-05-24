@@ -1,0 +1,178 @@
+openapi: 3.1.0
+info:
+  title: Transcend API
+  version: "3.2"
+  description: |
+    Transcend's REST API for privacy operations including data subject requests,
+    preflight identifier enrichment, custom integrations, consent and preference
+    management, LLM classifier, public JWT signing keys, and webhooks. Endpoints
+    and base URLs derived from the official OpenAPI at
+    https://docs.transcend.io/api/oas.json and the API reference at
+    https://docs.transcend.io/docs/api-reference.
+  contact:
+    name: Transcend
+    url: https://docs.transcend.io/docs/api-reference
+servers:
+  - url: https://api.transcend.io
+    description: EU backend (CLI default)
+  - url: https://api.us.transcend.io
+    description: US backend
+  - url: https://multi-tenant.sombra.transcend.io
+    description: Multi-tenant Sombra (EU)
+  - url: https://multi-tenant.sombra.us.transcend.io
+    description: Multi-tenant Sombra (US)
+  - url: https://consent.transcend.io
+    description: Preference Store (Europe)
+  - url: https://consent.us.transcend.io
+    description: Preference Store (US)
+security:
+  - Transcend_API_Key: []
+tags:
+  - name: Data Subject Request
+  - name: Preflight
+  - name: Custom Integration
+  - name: LLM Classifier
+  - name: Public Keys
+  - name: Preferences
+paths:
+  /v1/data-subject-request:
+    post:
+      tags: [Data Subject Request]
+      summary: Submit a data subject request
+      responses:
+        "200":
+          description: DSR submitted
+  /v1/data-subject-request/{id}:
+    get:
+      tags: [Data Subject Request]
+      summary: Retrieve a data subject request by id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: DSR record
+  /v1/data-subject-request/{id}/download-keys:
+    get:
+      tags: [Data Subject Request]
+      summary: Retrieve download keys for a DSR
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Download keys
+  /v1/request-identifiers:
+    post:
+      tags: [Data Subject Request]
+      summary: List request identifiers
+      responses:
+        "200":
+          description: Identifiers
+  /v1/enrich-identifiers:
+    post:
+      tags: [Preflight]
+      summary: Enrich identifiers before downstream processing
+      responses:
+        "200":
+          description: Enriched identifiers
+  /v1/files:
+    get:
+      tags: [Custom Integration]
+      summary: List files for custom integration
+      responses:
+        "200":
+          description: File listing
+  /v1/datapoint:
+    post:
+      tags: [Custom Integration]
+      summary: Push datapoints from a custom integration
+      responses:
+        "200":
+          description: Accepted
+  /v1/datapoint-chunked:
+    post:
+      tags: [Custom Integration]
+      summary: Push chunked datapoints
+      responses:
+        "200":
+          description: Accepted
+  /v1/data-silo:
+    post:
+      tags: [Custom Integration]
+      summary: Create or sync a data silo
+      responses:
+        "200":
+          description: Data silo
+    put:
+      tags: [Custom Integration]
+      summary: Update a data silo
+      responses:
+        "200":
+          description: Updated
+  /v1/data-silo/{id}/pending-requests/{type}:
+    get:
+      tags: [Custom Integration]
+      summary: List pending requests for a data silo by request type
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: type
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Pending requests
+  /v1/preferences:
+    put:
+      tags: [Preferences]
+      summary: Upsert preferences for a data subject
+      responses:
+        "200":
+          description: Updated
+  /sync:
+    get:
+      tags: [Preferences]
+      summary: Sync consent and preference state
+      responses:
+        "200":
+          description: Sync payload
+  /llm/classify-text:
+    post:
+      tags: [LLM Classifier]
+      summary: Classify text using Transcend's LLM classifier
+      responses:
+        "200":
+          description: Classification result
+  /classify/unstructured-text:
+    post:
+      tags: [LLM Classifier]
+      summary: Classify unstructured text
+      responses:
+        "200":
+          description: Classification result
+  /public-keys/sombra-general-signing-key:
+    get:
+      tags: [Public Keys]
+      summary: Retrieve the Sombra general JWT signing key
+      responses:
+        "200":
+          description: Public key
+components:
+  securitySchemes:
+    Transcend_API_Key:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key issued from the Transcend admin dashboard.

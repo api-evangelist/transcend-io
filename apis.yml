@@ -178,6 +178,8 @@ common:
     url: https://status.transcend.io
   - type: SignUp
     url: https://app.transcend.io/login
+  - type: LLMsTxt
+    url: https://docs.transcend.io/llms.txt
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

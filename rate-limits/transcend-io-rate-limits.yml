@@ -4,61 +4,80 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Transcend
 providerId: transcend-io
 created: '2026-05-22'
-modified: '2026-05-22'
+modified: '2026-05-25'
 tags:
-- Transcend
-- Privacy
-- Data Governance
-- Consent
-- Preference Management
-- DSR
-- Data Inventory
-- AI Governance
-- GDPR
-- CCPA
-- Compliance
-- Webhooks
-- GraphQL
-- Rate Limiting
-- Quotas
-- Throttling
-description: Scaffolded rate limit definitions for the Transcend API surface. Captures per-tier quotas, burst behavior, response
-  signaling, and recovery semantics. Defaults are scaffold values to be replaced with published provider limits.
+  - Transcend
+  - Privacy
+  - DSR
+  - Consent
+  - Preference Management
+  - Rate Limiting
+  - Quotas
+  - Throttling
+
+description: |
+  Rate limit definitions for the Transcend API surface. Transcend does not
+  publish a public per-tier rate sheet on its docs site — limits are
+  enforced per-organization and surfaced via standard headers and 429
+  responses. This file captures the observable signaling contract and
+  recommended client behavior.
+
 headers:
   limit: X-RateLimit-Limit
   remaining: X-RateLimit-Remaining
   reset: X-RateLimit-Reset
   retryAfter: Retry-After
   policy: RateLimit-Policy
+
 responseCodes:
   throttled: 429
   quotaExceeded: 429
   serviceUnavailable: 503
+
 limits:
-- tier: free
-  name: Free Tier Default
-  scope: api-key
-  metric: requests_per_minute
-  limit: 10
-  burst: 20
-  timeFrame: minute
-  applies:
-  - https://api.transcend.io
-  description: Default per-token request rate for the free tier. Bursts above the limit return HTTP 429 with Retry-After.
-- tier: pro
-  name: Pro Tier Default
-  scope: api-key
-  metric: requests_per_minute
-  limit: 120
-  burst: 240
-  timeFrame: minute
-  applies:
-  - https://api.transcend.io
-  description: Higher rate envelope for paid plans; reconcile against published commercial terms.
+  - tier: default
+    name: Per-Organization Default
+    scope: organization
+    metric: requests_per_second
+    description: |
+      Transcend enforces per-organization rate limits on the API. Specific
+      values depend on the contract; clients should always respect the
+      X-RateLimit-* headers and Retry-After on 429 responses.
+    applies:
+      - https://api.transcend.io
+      - https://api.us.transcend.io
+
+  - tier: preferences
+    name: Preference Store Default
+    scope: organization
+    metric: requests_per_second
+    description: Preference store endpoints (/v1/preferences/*) are tuned for higher-volume identifier mutations than the admin surface.
+    applies:
+      - https://consent.transcend.io
+      - https://consent.us.transcend.io
+
+  - tier: llm-classifier
+    name: LLM Classifier
+    scope: organization
+    metric: requests_per_minute
+    description: LLM classifier endpoints carry tighter per-organization throttles than CRUD endpoints due to model cost.
+    applies:
+      - https://api.transcend.io
+
 recoveryStrategies:
-- name: Exponential Backoff
-  description: Wait Retry-After seconds (or back off exponentially up to 60s) before retrying.
-- name: Queue and Retry
-  description: Submit bulk work in batches under the burst envelope.
+  - name: Honor Retry-After
+    description: Wait the number of seconds in Retry-After (or up to 60 s exponential backoff) before retrying.
+  - name: Queue Bulk Work
+    description: Buffer bulk preference and datapoint writes off-peak; chunk via /v1/datapoint-chunked to stay under burst.
+  - name: Multi-Region Failover
+    description: For US customers, use https://api.us.transcend.io to keep traffic in-region and avoid cross-region throttles.
+
 notes:
-- Replace scaffold values with the provider's published rate limit policy.
+  - Replace placeholder per-second values with the limits in your Transcend commercial agreement.
+  - The /sync endpoint runs on the airgap.js consent edge and has independent throttling tuned for client-side traffic.
+
+references:
+  - name: Transcend API Reference
+    url: https://docs.transcend.io/docs/api-reference
+  - name: apis.yml
+    url: https://raw.githubusercontent.com/api-evangelist/transcend-io/refs/heads/main/apis.yml

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-schema/transcend-classification-schema.json",
+  "title": "Classification",
+  "description": "Result of Transcend's LLM classifier including label scores and named entities.",
+  "type": "object",
+  "properties": {
+    "labels": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": { "type": "string" },
+          "score": { "type": "number" }
+        }
+      }
+    },
+    "entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "string" },
+          "text": { "type": "string" },
+          "start": { "type": "integer" },
+          "end": { "type": "integer" }
+        }
+      }
+    }
+  }
+}

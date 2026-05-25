@@ -1,0 +1,60 @@
+reviewer: API Evangelist
+provider: Transcend
+providerId: transcend-io
+reviewedOn: '2026-05-25'
+reviewer-stack:
+  generator: Claude Code
+  model: Claude Opus 4.7 (Anthropic)
+  modelReference: https://www.anthropic.com/
+
+summary: |
+  Transcend is a tier-1 privacy and data permissioning platform with a serious
+  developer surface — REST and GraphQL APIs, a TypeScript SDK and CLI in a
+  shared monorepo, eight per-domain MCP servers for AI-agent integration, a
+  Terraform provider, Helm charts, native iOS and Android consent SDKs, and a
+  customer-deployed Sombra gateway so Transcend itself never sees customer data
+  or API keys. The platform spans data inventory, DSR automation, consent and
+  preference management, privacy assessments, AI governance, and an LLM
+  classifier for unstructured data discovery. Documentation is thorough and a
+  machine-readable OpenAPI spec (3.0 and 3.1) is published. Pricing is gated
+  behind sales.
+
+strengths:
+  - Real OpenAPI 3.1 and 3.0 specs published at docs.transcend.io/api/oas.json
+  - Eight per-domain MCP servers (admin, assessment, consent, discovery, DSR, inventory, preferences, workflows) plus an aggregate package
+  - First-class infrastructure: Terraform provider, Helm charts, Sombra gateway Terraform module
+  - Data Map as Code via transcend.yml and the @transcend-io/cli
+  - Multi-region backends (EU default, US opt-in) with consistent path-level contract
+  - Customer-deployed Sombra gateway eliminates a major trust boundary
+
+opportunities:
+  - Publish per-tier rate limits on docs.transcend.io rather than communicating them only via contract
+  - Document the GraphQL API schema publicly alongside the REST OpenAPI
+  - Public pricing scaffold would lower friction for self-serve evaluation
+  - Operation-level descriptions are sparse on some endpoints (Spectral warnings present)
+
+tier: 1
+
+artifacts:
+  apis: apis.yml
+  openapi: openapi/transcend-io-openapi.yml
+  examples: examples/
+  rules: rules/transcend-rules.yml
+  capabilities: capabilities/
+  vocabulary: vocabulary/transcend-io-vocabulary.yml
+  jsonSchema: json-schema/
+  jsonStructure: json-structure/
+  jsonLd: json-ld/transcend-io-context.jsonld
+  plans: plans/transcend-io-plans-pricing.yml
+  rateLimits: rate-limits/transcend-io-rate-limits.yml
+  finops: finops/transcend-io-finops.yml
+
+referenceModel:
+  vendor: Anthropic
+  product: Claude
+  url: https://www.anthropic.com/
+  note: |
+    This review and the generated artifacts were authored by an agent running
+    on Claude (Anthropic). The Transcend MCP servers exposed in this profile
+    are designed to be consumed by clients like Claude and other MCP-capable
+    AI hosts.

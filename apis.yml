@@ -19,9 +19,13 @@ tags:
   - Compliance
   - Webhooks
   - GraphQL
+  - MCP
+  - SDK
+  - Terraform
+  - Helm
 url: https://raw.githubusercontent.com/api-evangelist/transcend-io/refs/heads/main/apis.yml
 created: '2026-05-23'
-modified: '2026-05-23'
+modified: '2026-05-25'
 specificationVersion: '0.20'
 apis:
   - aid: transcend-io:transcend-api
@@ -51,6 +55,32 @@ apis:
         url: https://status.transcend.io
       - type: SignUp
         url: https://app.transcend.io/login
+      - type: LocalOpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/transcend-io/main/openapi/transcend-io-openapi.yml
+      - type: SpectralRules
+        url: https://raw.githubusercontent.com/api-evangelist/transcend-io/main/rules/transcend-rules.yml
+      - type: NaftikoCapability
+        url: https://raw.githubusercontent.com/api-evangelist/transcend-io/main/capabilities/dsr-fulfillment.yaml
+      - type: NaftikoCapability
+        url: https://raw.githubusercontent.com/api-evangelist/transcend-io/main/capabilities/consent-and-preferences.yaml
+      - type: NaftikoCapability
+        url: https://raw.githubusercontent.com/api-evangelist/transcend-io/main/capabilities/ai-governance.yaml
+      - type: NaftikoCapability
+        url: https://raw.githubusercontent.com/api-evangelist/transcend-io/main/capabilities/custom-integration.yaml
+      - type: JSONSchema
+        url: https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-schema/transcend-data-subject-request-schema.json
+      - type: JSONSchema
+        url: https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-schema/transcend-preference-record-schema.json
+      - type: JSONLD
+        url: https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-ld/transcend-io-context.jsonld
+      - type: Vocabulary
+        url: https://raw.githubusercontent.com/api-evangelist/transcend-io/main/vocabulary/transcend-io-vocabulary.yml
+      - type: Plans
+        url: https://raw.githubusercontent.com/api-evangelist/transcend-io/main/plans/transcend-io-plans-pricing.yml
+      - type: RateLimits
+        url: https://raw.githubusercontent.com/api-evangelist/transcend-io/main/rate-limits/transcend-io-rate-limits.yml
+      - type: FinOps
+        url: https://raw.githubusercontent.com/api-evangelist/transcend-io/main/finops/transcend-io-finops.yml
     features:
       - name: Data Subject Request Automation
         description: Submit DSRs, poll status, retrieve download keys, and list request identifiers programmatically.
@@ -165,6 +195,61 @@ apis:
     authentication:
       - type: API Key
         description: API key passed via environment variable or flag to authenticate CLI calls.
+  - aid: transcend-io:transcend-mcp
+    name: Transcend MCP Servers
+    description: Model Context Protocol servers published under @transcend-io/* so AI agents can manage Transcend privacy operations. Includes per-domain servers for admin, assessments, consent, data discovery, DSR, inventory, preferences, and workflows, plus a meta MCP package that aggregates them. Distributed from the transcend-io/tools monorepo.
+    humanURL: https://github.com/transcend-io/tools/tree/main/packages/mcp
+    tags:
+      - MCP
+      - AI Agents
+      - Tooling
+    properties:
+      - type: SourceCode
+        url: https://github.com/transcend-io/tools/tree/main/packages/mcp
+      - type: PackageManager
+        url: https://www.npmjs.com/package/@transcend-io/mcp
+      - type: Tools
+        title: MCP Server - Admin
+        url: https://github.com/transcend-io/tools/tree/main/packages/mcp/mcp-server-admin
+      - type: Tools
+        title: MCP Server - Assessment
+        url: https://github.com/transcend-io/tools/tree/main/packages/mcp/mcp-server-assessment
+      - type: Tools
+        title: MCP Server - Consent
+        url: https://github.com/transcend-io/tools/tree/main/packages/mcp/mcp-server-consent
+      - type: Tools
+        title: MCP Server - Data Discovery
+        url: https://github.com/transcend-io/tools/tree/main/packages/mcp/mcp-server-discovery
+      - type: Tools
+        title: MCP Server - DSR
+        url: https://github.com/transcend-io/tools/tree/main/packages/mcp/mcp-server-dsr
+      - type: Tools
+        title: MCP Server - Inventory
+        url: https://github.com/transcend-io/tools/tree/main/packages/mcp/mcp-server-inventory
+      - type: Tools
+        title: MCP Server - Preferences
+        url: https://github.com/transcend-io/tools/tree/main/packages/mcp/mcp-server-preferences
+      - type: Tools
+        title: MCP Server - Workflows
+        url: https://github.com/transcend-io/tools/tree/main/packages/mcp/mcp-server-workflows
+    features:
+      - name: Agent-Friendly Privacy Ops
+        description: Expose Transcend admin, assessment, consent, discovery, DSR, inventory, preferences, and workflow operations to AI agents via MCP.
+      - name: Per-Domain Servers
+        description: Eight scoped MCP servers let agents work against a single Transcend domain rather than the full API surface.
+    useCases:
+      - name: AI Governance Copilot
+        description: Let an AI agent answer privacy questions, draft assessments, and manage consent through scoped MCP servers.
+      - name: Automated Privacy Operations
+        description: Orchestrate DSR fulfillment, inventory updates, and preference syncs from agent-driven workflows.
+    integrations:
+      - name: Claude
+      - name: Anthropic
+      - name: VS Code
+      - name: Cursor
+    authentication:
+      - type: API Key
+        description: Transcend API key supplied to the MCP server via environment variable.
 common:
   - type: Website
     url: https://transcend.io/
@@ -174,12 +259,56 @@ common:
     url: https://docs.transcend.io/api/oas.json
   - type: SourceCode
     url: https://github.com/transcend-io
+  - type: GitHubOrganization
+    url: https://github.com/transcend-io
   - type: Status
     url: https://status.transcend.io
   - type: SignUp
     url: https://app.transcend.io/login
   - type: LLMsTxt
     url: https://docs.transcend.io/llms.txt
+  - type: CLI
+    title: Transcend CLI
+    url: https://github.com/transcend-io/tools/tree/main/packages/cli
+  - type: SDK
+    title: Transcend Node.js SDK
+    url: https://github.com/transcend-io/tools/tree/main/packages/sdk
+  - type: Tools
+    title: Developer Tools Monorepo
+    url: https://github.com/transcend-io/tools
+  - type: Tools
+    title: Transcend MCP (meta package)
+    url: https://github.com/transcend-io/tools/tree/main/packages/mcp/mcp
+  - type: Tools
+    title: Terraform Provider for Transcend
+    url: https://github.com/transcend-io/terraform-provider-transcend
+  - type: Tools
+    title: Terraform Module - AWS Sombra
+    url: https://github.com/transcend-io/terraform-aws-sombra
+  - type: Tools
+    title: Helm Charts
+    url: https://github.com/transcend-io/helm-charts
+  - type: Tools
+    title: Consent Manager UI
+    url: https://github.com/transcend-io/consent-manager-ui
+  - type: Tools
+    title: Consent Manager iOS SDK
+    url: https://github.com/transcend-io/Transcend-spm-sdk
+  - type: CodeExamples
+    title: Integration Examples
+    url: https://github.com/transcend-io/examples
+  - type: PrivacyTypes
+    url: https://github.com/transcend-io/tools/tree/main/packages/privacy-types
+  - type: PressReleases
+    url: https://transcend.io/press
+  - type: Blog
+    url: https://transcend.io/blog
+  - type: Security
+    url: https://transcend.io/security
+  - type: Pricing
+    url: https://transcend.io/pricing
+  - type: Customers
+    url: https://transcend.io/customers
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

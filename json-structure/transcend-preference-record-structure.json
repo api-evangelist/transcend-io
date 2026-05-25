@@ -1,0 +1,12 @@
+{
+  "structure": "PreferenceRecord",
+  "provider": "transcend-io",
+  "description": "Logical structure of a Transcend preference record stored in a preference partition.",
+  "fields": [
+    { "name": "purpose", "type": "string", "required": true, "description": "Processing purpose (Marketing, Analytics, etc.)" },
+    { "name": "preference", "type": "string", "required": true },
+    { "name": "value", "type": "boolean|string", "required": true },
+    { "name": "timestamp", "type": "string", "format": "date-time" },
+    { "name": "identifiers", "type": "array<Identifier>" }
+  ]
+}

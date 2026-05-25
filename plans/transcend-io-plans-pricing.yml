@@ -4,55 +4,121 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Transcend
 providerId: transcend-io
 created: '2026-05-22'
-modified: '2026-05-22'
+modified: '2026-05-25'
 tags:
-- Transcend
-- Privacy
-- Data Governance
-- Consent
-- Preference Management
-- DSR
-- Data Inventory
-- AI Governance
-- GDPR
-- CCPA
-- Compliance
-- Webhooks
-- GraphQL
-description: Machine-readable plans scaffold for the Transcend API surface. Conforms to the API Commons Plans schema. Tier
-  limits and prices are scaffold defaults; replace with provider-published values.
+  - Transcend
+  - Privacy
+  - Data Governance
+  - Consent
+  - Preference Management
+  - DSR
+  - Data Inventory
+  - AI Governance
+  - GDPR
+  - CCPA
+  - Compliance
+description: |
+  Plan structure for the Transcend platform. Transcend publishes products
+  (Core Platform, Privacy Rights, Data Discovery and Classification) and sells
+  via "streamlined" and "custom" packages — exact dollar values are quoted
+  per-deal. This file captures the published shape; numerical limits and prices
+  must be reconciled against the customer's commercial agreement.
+
 plans:
-- id: transcend-io-free
-  name: Free
-  type: freemium
-  description: Free entry tier for the Transcend API surface. Intended for evaluation, prototyping, and low-volume integrations.
-    Real limits and pricing must be reconciled with the provider's published plan documentation.
-  entries:
-  - label: API Requests
-    description: Monthly API request quota across all included endpoints
-    name: api_requests
-    type: quota
-    metric: requests
-    limit: 1000
-    timeFrame: month
-    geo: global
-    domains:
-    - https://api.transcend.io
-    unit: 1
-    price: '0.00'
-    userMultiplied: false
-  - label: Rate Limit
-    description: Maximum requests per minute on the free tier
-    name: rate_limit
-    type: rate
-    metric: requests_per_minute
-    limit: 10
-    timeFrame: minute
-    geo: global
-    domains:
-    - https://api.transcend.io
-    unit: 1
-    price: '0.00'
+  - id: transcend-io-core-platform
+    name: Core Platform
+    type: paid
+    description: |
+      Foundational tier for tracking a privacy program — data inventory,
+      automatic system discovery, ROPA, and compliance assessments (DPIAs,
+      AI risk assessments). Required for enterprises building a defensible
+      privacy posture.
+    entries:
+      - label: Data Inventory
+        description: Build and maintain the inventory of systems holding personal data.
+        name: data_inventory
+        type: feature
+      - label: Automatic System Discovery
+        description: Discover internal systems automatically across SaaS, cloud, and on-prem.
+        name: system_discovery
+        type: feature
+      - label: ROPA
+        description: Record of Processing Activities creation and maintenance.
+        name: ropa
+        type: feature
+      - label: Compliance Assessments
+        description: DPIAs, AI risk assessments, and other compliance assessments.
+        name: assessments
+        type: feature
+
+  - id: transcend-io-privacy-rights
+    name: Privacy Rights
+    type: paid
+    description: |
+      DSR fulfillment across all request types plus web and mobile consent
+      management, user preference updates, and privacy policy display.
+    entries:
+      - label: DSR Fulfillment
+        description: Automate ACCESS, ERASURE, OPT_IN, OPT_OUT, and rectification flows.
+        name: dsr_fulfillment
+        type: feature
+      - label: Consent Management
+        description: Web and mobile consent management via airgap.js and native SDKs.
+        name: consent_management
+        type: feature
+      - label: Preference Management
+        description: Server-side preference store for unified consent state.
+        name: preference_management
+        type: feature
+      - label: Privacy Policy Display
+        description: Versioned privacy policy display and acknowledgement.
+        name: privacy_policy
+        type: feature
+
+  - id: transcend-io-data-discovery-classification
+    name: Data Discovery and Classification
+    type: paid
+    description: |
+      Identify personal data across systems with the LLM Classifier, prioritize
+      security work, and monitor for out-of-policy data.
+    entries:
+      - label: Personal Data Identification
+        description: Locate personal data across structured and unstructured systems.
+        name: data_identification
+        type: feature
+      - label: LLM Classifier
+        description: Text classification and Named Entity Recognition for unstructured data.
+        name: llm_classifier
+        type: feature
+      - label: Out-of-Policy Monitoring
+        description: Continuously monitor for data stored outside of approved policies.
+        name: ooo_policy_monitoring
+        type: feature
+
+  - id: transcend-io-streamlined
+    name: Streamlined Package
+    type: package
+    description: Packaged offering for lean teams ready to scale. Quoted per-deal.
+    entries:
+      - label: Packaging Tier
+        name: packaging_tier
+        type: package
+        description: Combination of Core Platform, Privacy Rights, and optional Discovery tiers.
+
+  - id: transcend-io-custom
+    name: Custom Package
+    type: package
+    description: Custom-quoted package for enterprises with hundreds of systems, complex workflows, or migration needs.
+    entries:
+      - label: Packaging Tier
+        name: packaging_tier
+        type: package
+        description: Bespoke combination of products and services scoped to the customer.
+
 references:
-- name: Transcend API Documentation
-  url: https://raw.githubusercontent.com/api-evangelist/transcend-io/refs/heads/main/apis.yml
+  - name: Transcend Pricing
+    url: https://transcend.io/pricing
+  - name: Transcend API Documentation
+    url: https://docs.transcend.io/docs/api-reference
+  - name: apis.yml
+    url: https://raw.githubusercontent.com/api-evangelist/transcend-io/refs/heads/main/apis.yml

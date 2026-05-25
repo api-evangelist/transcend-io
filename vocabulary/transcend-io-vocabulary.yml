@@ -1,0 +1,106 @@
+vocabulary: transcend-io
+name: Transcend Privacy and Data Permissioning Vocabulary
+description: |
+  Domain vocabulary for the Transcend platform, mapping operational concepts (DSR types,
+  preferences, consent, data silos, classification) to industry standards including DPV,
+  schema.org, GDPR articles, and FOCUS.
+version: "0.1"
+namespaces:
+  schema: https://schema.org/
+  dpv: https://w3id.org/dpv#
+  dpv-gdpr: https://w3id.org/dpv/dpv-gdpr#
+  focus: https://focus.finops.org/focus-specification/v1-3/
+
+terms:
+  - term: Data Subject Request
+    aliases: [DSR, Privacy Request, Consumer Request]
+    mapping:
+      dpv: DataSubjectRightExercise
+      gdpr: Articles 15-22
+
+  - term: Access Request
+    enum: ACCESS
+    mapping:
+      dpv-gdpr: A15-RightOfAccess
+      ccpa: Right to Know
+
+  - term: Erasure Request
+    enum: ERASURE
+    mapping:
+      dpv-gdpr: A17-RightToErasure
+      ccpa: Right to Delete
+
+  - term: Opt-Out Request
+    enum: OPT_OUT
+    mapping:
+      dpv: WithdrawConsent
+      ccpa: Right to Opt-Out of Sale or Sharing
+
+  - term: Opt-In Request
+    enum: OPT_IN
+    mapping:
+      dpv: GiveConsent
+
+  - term: Rectification Request
+    enum: RECTIFICATION
+    mapping:
+      dpv-gdpr: A16-RightToRectification
+
+  - term: Consent
+    mapping:
+      dpv: Consent
+      schema: ConsentAction
+
+  - term: Preference
+    description: A purpose-scoped consent or marketing preference stored in a Transcend partition.
+
+  - term: Purpose
+    mapping:
+      dpv: Purpose
+
+  - term: Identifier
+    mapping:
+      schema: identifier
+    examples: [EMAIL, PHONE, USER_ID, CUSTOM]
+
+  - term: Data Silo
+    description: A registered system on the customer's data map that can be queried for DSR fulfillment.
+    mapping:
+      schema: Dataset
+
+  - term: Datapoint
+    description: A single piece of personal data exposed by a data silo.
+    mapping:
+      schema: DataFeedItem
+
+  - term: Preflight
+    description: Identifier enrichment step that runs before DSR fan-out.
+
+  - term: LLM Classifier
+    description: Text classification and NER service for unstructured data discovery.
+
+  - term: Sombra
+    description: Customer-deployed security gateway that brokers Transcend traffic without exposing customer data or API keys to Transcend.
+
+  - term: AI Governance
+    description: Real-time policy enforcement on whether customer data can be used for AI training or inference.
+
+  - term: Data Map as Code
+    description: transcend.yml definition of data silos and integrations, synced via the Transcend CLI.
+
+regulations:
+  - id: GDPR
+    name: General Data Protection Regulation
+    jurisdiction: EU
+  - id: CCPA
+    name: California Consumer Privacy Act
+    jurisdiction: US-CA
+  - id: CPRA
+    name: California Privacy Rights Act
+    jurisdiction: US-CA
+  - id: LGPD
+    name: Lei Geral de Proteção de Dados
+    jurisdiction: BR
+  - id: PIPEDA
+    name: Personal Information Protection and Electronic Documents Act
+    jurisdiction: CA

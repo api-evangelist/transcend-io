@@ -1,0 +1,44 @@
+capability: transcend-api
+name: Transcend API
+description: Shared capability definition for the Transcend privacy and data permissioning REST API.
+version: "0.1"
+provider:
+  name: Transcend
+  aid: transcend-io
+  baseUrl: https://api.transcend.io
+authentication:
+  type: api-key
+  header: Authorization
+  scheme: Bearer
+  env: TRANSCEND_API_KEY
+domains:
+  - id: dsr
+    name: Data Subject Request
+    operations: [submitDataSubjectRequest, getDataSubjectRequest, getDataSubjectRequestDownloadKeys, listRequestIdentifiers]
+  - id: preflight
+    name: Preflight
+    operations: [enrichIdentifiers]
+  - id: custom-integration
+    name: Custom Integration
+    operations: [listFiles, pushDatapoints, pushChunkedDatapoints, createDataSilo, updateDataSilo, listDataSiloPendingRequests]
+  - id: preferences
+    name: Preferences
+    operations: [upsertPreferences, queryPreferences, deletePreferences, appendPreferenceIdentifiers, updatePreferenceIdentifiers, deletePreferenceIdentifiers]
+  - id: consent
+    name: Consent
+    operations: [getConsentSync, postConsentSync]
+  - id: llm-classifier
+    name: LLM Classifier
+    operations: [classifyText, classifyUnstructuredText]
+  - id: public-keys
+    name: Public Keys
+    operations: [getSombraSigningKey]
+artifacts:
+  openapi: ../../openapi/transcend-io-openapi.yml
+  examples: ../../examples/
+governance:
+  dataResidency:
+    - EU
+    - US
+  sensitiveData: true
+  consentAware: true

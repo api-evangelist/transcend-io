@@ -1,0 +1,32 @@
+capability: consent-and-preferences
+name: Consent and Preference Management
+description: |
+  Sync customer consent state across web, mobile, and backend systems using the
+  client-side /sync endpoint and the server-side /v1/preferences store.
+version: "0.1"
+uses:
+  - shared/transcend-api.yaml
+workflow:
+  - step: client-sync
+    operation: postConsentSync
+    description: Persist consent state captured in the Consent Manager UI.
+  - step: server-upsert
+    operation: upsertPreferences
+    description: Upsert authoritative preference records into a partition.
+  - step: query
+    operation: queryPreferences
+    description: Query the preference store before activating a downstream system.
+  - step: maintain-identifiers
+    operations:
+      - appendPreferenceIdentifiers
+      - updatePreferenceIdentifiers
+      - deletePreferenceIdentifiers
+    description: Reconcile identifiers attached to preference records as customers update profiles.
+inputs:
+  partition:
+    description: Preference store partition slug
+  identifiers:
+    description: Identifiers for the data subject (email, phone, userId)
+outputs:
+  preferences:
+    description: Current consent and preference state for the subject

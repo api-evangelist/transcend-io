@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-schema/transcend-preference-record-schema.json",
+  "title": "PreferenceRecord",
+  "description": "A single consent or preference record stored in a Transcend preference partition.",
+  "type": "object",
+  "required": ["purpose", "preference"],
+  "properties": {
+    "purpose": { "type": "string", "description": "Processing purpose (e.g. Marketing, Analytics, Personalization)." },
+    "preference": { "type": "string", "description": "Preference key within the purpose." },
+    "value": {
+      "oneOf": [
+        { "type": "boolean" },
+        { "type": "string" }
+      ]
+    },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "identifiers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "value": { "type": "string" }
+        }
+      }
+    }
+  }
+}

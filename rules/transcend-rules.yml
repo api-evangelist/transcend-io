@@ -1,0 +1,84 @@
+extends:
+  - spectral:oas
+rules:
+  transcend-info-contact:
+    description: Every spec must declare a contact for the Transcend developer team.
+    given: $.info
+    severity: error
+    then:
+      field: contact
+      function: truthy
+  transcend-info-license:
+    description: Top-level license information must be present.
+    given: $.info
+    severity: warn
+    then:
+      field: license
+      function: truthy
+  transcend-operation-operationid:
+    description: Every operation needs an operationId for SDK and MCP generation.
+    given: $.paths[*][get,post,put,delete,patch]
+    severity: error
+    then:
+      field: operationId
+      function: truthy
+  transcend-operation-tags-required:
+    description: Every operation must have at least one tag.
+    given: $.paths[*][get,post,put,delete,patch]
+    severity: error
+    then:
+      field: tags
+      function: truthy
+  transcend-operation-summary-title-case:
+    description: Operation summaries must use Title Case.
+    given: $.paths[*][get,post,put,delete,patch].summary
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "^([A-Z][a-zA-Z0-9]*)( (A|An|And|As|At|But|By|For|From|In|Is|It|Of|On|Or|The|To|With|[A-Z][a-zA-Z0-9]*))*$"
+  transcend-v1-prefix:
+    description: Versioned endpoints must live under /v1/ unless they are public keys, sync, llm, or classify utilities.
+    given: $.paths
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(/v1/|/sync|/llm/|/classify/|/public-keys/)"
+  transcend-security-defined:
+    description: All operations should inherit the Transcend_API_Key scheme unless they are public-key endpoints.
+    given: $
+    severity: error
+    then:
+      field: security
+      function: truthy
+  transcend-tag-required-domains:
+    description: Tags should match the known Transcend domains (Data Subject Request, Preflight, Custom Integration, LLM Classifier, Public Keys, Preferences, Consent).
+    given: $.tags[*].name
+    severity: warn
+    then:
+      function: enumeration
+      functionOptions:
+        values:
+          - Data Subject Request
+          - Preflight
+          - Custom Integration
+          - LLM Classifier
+          - Public Keys
+          - Preferences
+          - Consent
+  transcend-no-trailing-slash:
+    description: Paths must not end with a trailing slash.
+    given: $.paths
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: ".+/$"
+  transcend-error-schema:
+    description: Components should define a reusable Error schema.
+    given: $.components.schemas
+    severity: warn
+    then:
+      field: Error
+      function: truthy

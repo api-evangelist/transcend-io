@@ -1,0 +1,13 @@
+{
+  "operation": "GET /v1/data-subject-request/{id}",
+  "request": { "id": "f29c8b3e-9c7c-4e62-9c19-8f4f0a3c4b1d" },
+  "response": {
+    "id": "f29c8b3e-9c7c-4e62-9c19-8f4f0a3c4b1d",
+    "type": "ACCESS",
+    "status": "IN_PROGRESS",
+    "coreIdentifier": { "name": "email", "value": "jane@example.com" },
+    "subjectType": "Customer",
+    "locale": "en-US",
+    "createdAt": "2026-05-25T17:21:04Z"
+  }
+}

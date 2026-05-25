@@ -11,75 +11,122 @@ providerId: transcend-io
 publisherName: Transcend
 serviceCategory: API
 created: '2026-05-22'
-modified: '2026-05-22'
+modified: '2026-05-25'
+
 tags:
-- Transcend
-- Privacy
-- Data Governance
-- Consent
-- Preference Management
-- DSR
-- Data Inventory
-- AI Governance
-- GDPR
-- CCPA
-- Compliance
-- Webhooks
-- GraphQL
-- FinOps
-- Cost Management
-- FOCUS
-description: FinOps framework alignment for the Transcend API surface. Provides a FOCUS-shaped mapping for cost allocation,
-  usage measurement, and unit-economics reporting.
+  - Transcend
+  - Privacy
+  - Data Governance
+  - Consent
+  - Preference Management
+  - DSR
+  - Data Inventory
+  - AI Governance
+  - GDPR
+  - CCPA
+  - Compliance
+  - FinOps
+  - Cost Management
+  - FOCUS
+
+description: |
+  FinOps alignment for the Transcend platform. Captures the cost drivers
+  privacy and engineering teams need to track — data subject request volume,
+  data silo connector count, LLM classifier usage, preference store storage
+  and traffic, and Sombra gateway compute. Maps each to FOCUS for finance
+  reporting.
+
 principles:
-- name: Visibility
-  description: Make API consumption costs visible to engineering, product, and finance teams in near real-time.
-- name: Allocation
-  description: Tag every chargeable API call with the consuming team, environment, application, and feature so cost can be
-    allocated.
-- name: Optimization
-  description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce cost per useful unit
-    of work.
-- name: Accountability
-  description: Establish budget owners and chargeback / showback flows for each consuming team.
+  - name: Visibility
+    description: Surface privacy-program spend to engineering, product, legal, and finance in near real-time.
+  - name: Allocation
+    description: Tag every chargeable Transcend call with the consuming team, environment, application, and feature.
+  - name: Optimization
+    description: Tune batch sizes, classifier invocation, and Sombra residency to keep unit cost per fulfilled request down.
+  - name: Accountability
+    description: Establish budget owners for the Core Platform, Privacy Rights, and Data Discovery products.
+
 domains:
-- name: API Consumption
-  description: Per-call and per-quota usage charges across the Transcend API surface.
-  costDrivers:
-  - request_volume
-  - tier_selection
-  - feature_use
-  focusMapping:
-    ChargeCategory: Usage
-    ChargeClass: Consumption
-    ServiceCategory: API
-    ServiceSubcategory: Provider API
+  - name: API Consumption
+    description: Per-call and per-quota usage across the Transcend admin and preference APIs.
+    costDrivers:
+      - dsr_volume
+      - preference_writes
+      - classifier_invocations
+      - data_silo_count
+    focusMapping:
+      ChargeCategory: Usage
+      ChargeClass: Consumption
+      ServiceCategory: API
+      ServiceSubcategory: Privacy Operations API
+
+  - name: Sombra Gateway Compute
+    description: Customer-side compute running the Sombra gateway (Terraform module or self-hosted).
+    costDrivers:
+      - request_volume
+      - tenancy_model
+    focusMapping:
+      ChargeCategory: Usage
+      ChargeClass: Consumption
+      ServiceCategory: Compute
+      ServiceSubcategory: Privacy Gateway
+
+  - name: LLM Classifier
+    description: Text classification and NER calls priced per-model invocation.
+    costDrivers:
+      - characters_processed
+      - model_tier
+    focusMapping:
+      ChargeCategory: Usage
+      ChargeClass: Consumption
+      ServiceCategory: AI and Machine Learning
+      ServiceSubcategory: Classification
+
+  - name: Preference Store
+    description: Per-record storage and per-mutation pricing for the preference store partitions.
+    costDrivers:
+      - records_stored
+      - mutation_volume
+    focusMapping:
+      ChargeCategory: Usage
+      ChargeClass: Consumption
+      ServiceCategory: Storage
+      ServiceSubcategory: Consent Store
+
 focusFields:
   required:
-  - BillingPeriodStart
-  - BillingPeriodEnd
-  - ChargeCategory
-  - ChargePeriodStart
-  - ChargePeriodEnd
-  - ProviderName
-  - PublisherName
-  - InvoiceIssuerName
-  - ServiceName
-  - ServiceCategory
-  - BilledCost
-  - EffectiveCost
-  - ListCost
-  - ContractedCost
-  - PricingCategory
-  - PricingUnit
-  - PricingQuantity
+    - BillingPeriodStart
+    - BillingPeriodEnd
+    - ChargeCategory
+    - ChargePeriodStart
+    - ChargePeriodEnd
+    - ProviderName
+    - PublisherName
+    - InvoiceIssuerName
+    - ServiceName
+    - ServiceCategory
+    - BilledCost
+    - EffectiveCost
+    - ListCost
+    - ContractedCost
+    - PricingCategory
+    - PricingUnit
+    - PricingQuantity
   recommended:
-  - SubAccountId
-  - SubAccountName
-  - ResourceId
-  - ResourceName
-  - ResourceType
-  - Region
-  - Tags
+    - SubAccountId
+    - SubAccountName
+    - ResourceId
+    - ResourceName
+    - ResourceType
+    - Region
+    - Tags
+
 notes:
-- Reconcile the scaffolded mapping above against Transcend's actual invoice / billing model.
+  - Reconcile the scaffolded mapping above against Transcend's actual invoice / billing model.
+  - Add CommitmentDiscountCategory if your Transcend agreement includes prepaid or committed-use discounts.
+
+references:
+  - name: Transcend Pricing
+    url: https://transcend.io/pricing
+  - name: apis.yml
+    url: https://raw.githubusercontent.com/api-evangelist/transcend-io/refs/heads/main/apis.yml

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-schema/transcend-data-silo-schema.json",
+  "title": "DataSilo",
+  "description": "A Transcend data silo definition representing one of the systems on the data map.",
+  "type": "object",
+  "required": ["title", "type"],
+  "properties": {
+    "id": { "type": "string" },
+    "title": { "type": "string" },
+    "type": { "type": "string", "description": "Integration type slug." },
+    "url": { "type": "string", "format": "uri" },
+    "description": { "type": "string" },
+    "outerType": { "type": "string" },
+    "headers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "value": { "type": "string" },
+          "isSecret": { "type": "boolean" }
+        }
+      }
+    }
+  }
+}

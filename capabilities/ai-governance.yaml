@@ -1,0 +1,31 @@
+capability: ai-governance
+name: AI Data Permissioning and Classification
+description: |
+  Decide in real time whether customer data can be used for AI training or inference,
+  and run Transcend's LLM classifier to detect PII, PHI, and other sensitive content
+  in unstructured text before it enters a model context.
+version: "0.1"
+uses:
+  - shared/transcend-api.yaml
+workflow:
+  - step: classify
+    operation: classifyText
+    description: Classify input text against a Transcend-managed or user-supplied label set.
+  - step: ner
+    operation: classifyUnstructuredText
+    description: Extract named entities (PERSON, EMAIL, PHONE, etc.) from free text.
+  - step: check-consent
+    operation: queryPreferences
+    description: Look up the subject's consent state before using their data for AI.
+  - step: gate
+    description: Reject or redact upstream of the model when the subject has not opted in.
+inputs:
+  text:
+    description: Free text to classify and screen for sensitive entities
+  subjectIdentifiers:
+    description: Identifiers used to look up consent state
+outputs:
+  classification:
+    description: Label scores and detected entities
+  allowed:
+    description: Boolean gate decision for AI use of the subject's data

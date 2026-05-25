@@ -1,0 +1,22 @@
+{
+  "structure": "DataSubjectRequest",
+  "provider": "transcend-io",
+  "description": "Logical structure of a Transcend DSR, suitable for API Commons JSON Structure consumers.",
+  "fields": [
+    { "name": "id", "type": "string", "format": "uuid", "required": true, "description": "DSR identifier" },
+    { "name": "type", "type": "enum", "values": ["ACCESS", "ERASURE", "OPT_IN", "OPT_OUT", "RECTIFICATION", "RESTRICTION", "AUTO_FULFILL"], "required": true },
+    { "name": "status", "type": "enum", "values": ["REQUEST_MADE", "IN_PROGRESS", "COMPLETED", "FAILED", "REJECTED", "REVOKED"], "required": true },
+    { "name": "coreIdentifier", "type": "Identifier", "required": true },
+    { "name": "subjectType", "type": "string", "description": "Subject type label, e.g. Customer or Employee" },
+    { "name": "locale", "type": "string", "format": "bcp47" },
+    { "name": "createdAt", "type": "string", "format": "date-time" },
+    { "name": "completedAt", "type": "string", "format": "date-time" }
+  ],
+  "embedded": {
+    "Identifier": [
+      { "name": "name", "type": "string", "required": true },
+      { "name": "value", "type": "string", "required": true },
+      { "name": "type", "type": "enum", "values": ["EMAIL", "PHONE", "USER_ID", "CUSTOM"] }
+    ]
+  }
+}

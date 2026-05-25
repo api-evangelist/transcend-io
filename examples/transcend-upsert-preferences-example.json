@@ -1,0 +1,16 @@
+{
+  "operation": "PUT /v1/preferences",
+  "request": {
+    "partition": "main",
+    "identifiers": [{ "name": "email", "value": "jane@example.com" }],
+    "records": [
+      {
+        "purpose": "Marketing",
+        "preference": "EmailOptIn",
+        "value": true,
+        "timestamp": "2026-05-25T17:21:04Z"
+      }
+    ]
+  },
+  "response": { "status": "OK", "updated": 1 }
+}

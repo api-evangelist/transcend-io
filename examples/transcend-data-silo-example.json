@@ -1,0 +1,18 @@
+{
+  "operation": "POST /v1/data-silo",
+  "request": {
+    "title": "Internal CRM",
+    "type": "server",
+    "url": "https://crm.example.com/transcend-webhook",
+    "description": "Custom data silo for the internal CRM application.",
+    "headers": [
+      { "name": "X-CRM-Token", "value": "abc123", "isSecret": true }
+    ]
+  },
+  "response": {
+    "id": "ds_5a91",
+    "title": "Internal CRM",
+    "type": "server",
+    "url": "https://crm.example.com/transcend-webhook"
+  }
+}

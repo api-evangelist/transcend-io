@@ -1,0 +1,15 @@
+{
+  "operation": "POST /v1/enrich-identifiers",
+  "request": {
+    "requestId": "f29c8b3e-9c7c-4e62-9c19-8f4f0a3c4b1d",
+    "identifiers": [
+      { "name": "email", "value": "jane@example.com", "type": "EMAIL" }
+    ]
+  },
+  "response": {
+    "identifiers": [
+      { "name": "userId", "value": "usr_8821", "type": "USER_ID" },
+      { "name": "phone", "value": "+15551234567", "type": "PHONE" }
+    ]
+  }
+}

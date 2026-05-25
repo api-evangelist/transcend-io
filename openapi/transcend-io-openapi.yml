@@ -12,11 +12,14 @@ info:
   contact:
     name: Transcend
     url: https://docs.transcend.io/docs/api-reference
+  license:
+    name: Proprietary
+    url: https://transcend.io/legal/terms-of-service
 servers:
   - url: https://api.transcend.io
-    description: EU backend (CLI default)
+    description: EU Backend (CLI default)
   - url: https://api.us.transcend.io
-    description: US backend
+    description: US Backend
   - url: https://multi-tenant.sombra.transcend.io
     description: Multi-tenant Sombra (EU)
   - url: https://multi-tenant.sombra.us.transcend.io
@@ -29,97 +32,207 @@ security:
   - Transcend_API_Key: []
 tags:
   - name: Data Subject Request
+    description: Submit, poll, and download data subject requests.
   - name: Preflight
+    description: Enrich identifiers before downstream DSR processing.
   - name: Custom Integration
+    description: Stream files, push datapoints, and respond to access, erasure, opt-in, and opt-out requests.
   - name: LLM Classifier
+    description: Text classification and Named Entity Recognition for unstructured data discovery.
   - name: Public Keys
+    description: Public JWT signing keys exposed by the Sombra gateway.
   - name: Preferences
+    description: Server-side preference store CRUD and query operations.
+  - name: Consent
+    description: Client-side consent sync used by the Consent Manager.
 paths:
   /v1/data-subject-request:
     post:
       tags: [Data Subject Request]
-      summary: Submit a data subject request
+      summary: Submit a Data Subject Request
+      operationId: submitDataSubjectRequest
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataSubjectRequestInput'
       responses:
         "200":
           description: DSR submitted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSubjectRequest'
+        "401": { $ref: '#/components/responses/Unauthorized' }
+        "429": { $ref: '#/components/responses/RateLimited' }
   /v1/data-subject-request/{id}:
     get:
       tags: [Data Subject Request]
-      summary: Retrieve a data subject request by id
+      summary: Retrieve a Data Subject Request by Id
+      operationId: getDataSubjectRequest
       parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: string
+        - $ref: '#/components/parameters/RequestId'
       responses:
         "200":
           description: DSR record
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSubjectRequest'
+        "404": { $ref: '#/components/responses/NotFound' }
   /v1/data-subject-request/{id}/download-keys:
     get:
       tags: [Data Subject Request]
-      summary: Retrieve download keys for a DSR
+      summary: Retrieve Download Keys for a Data Subject Request
+      operationId: getDataSubjectRequestDownloadKeys
       parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: string
+        - $ref: '#/components/parameters/RequestId'
       responses:
         "200":
           description: Download keys
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  keys:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DownloadKey'
   /v1/request-identifiers:
     post:
       tags: [Data Subject Request]
-      summary: List request identifiers
+      summary: List Request Identifiers
+      operationId: listRequestIdentifiers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                requestId:
+                  type: string
       responses:
         "200":
           description: Identifiers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  identifiers:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/RequestIdentifier'
   /v1/enrich-identifiers:
     post:
       tags: [Preflight]
-      summary: Enrich identifiers before downstream processing
+      summary: Enrich Identifiers Before Downstream Processing
+      operationId: enrichIdentifiers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                requestId:
+                  type: string
+                identifiers:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/RequestIdentifier'
       responses:
         "200":
           description: Enriched identifiers
   /v1/files:
     get:
       tags: [Custom Integration]
-      summary: List files for custom integration
+      summary: List Files for Custom Integration
+      operationId: listFiles
+      parameters:
+        - in: query
+          name: requestId
+          schema:
+            type: string
       responses:
         "200":
           description: File listing
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  files:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/File'
   /v1/datapoint:
     post:
       tags: [Custom Integration]
-      summary: Push datapoints from a custom integration
+      summary: Push Datapoints From a Custom Integration
+      operationId: pushDatapoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DatapointBatch'
       responses:
         "200":
           description: Accepted
   /v1/datapoint-chunked:
     post:
       tags: [Custom Integration]
-      summary: Push chunked datapoints
+      summary: Push Chunked Datapoints
+      operationId: pushChunkedDatapoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DatapointBatch'
       responses:
         "200":
           description: Accepted
   /v1/data-silo:
     post:
       tags: [Custom Integration]
-      summary: Create or sync a data silo
+      summary: Create or Sync a Data Silo
+      operationId: createDataSilo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataSilo'
       responses:
         "200":
           description: Data silo
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSilo'
     put:
       tags: [Custom Integration]
-      summary: Update a data silo
+      summary: Update a Data Silo
+      operationId: updateDataSilo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataSilo'
       responses:
         "200":
           description: Updated
   /v1/data-silo/{id}/pending-requests/{type}:
     get:
       tags: [Custom Integration]
-      summary: List pending requests for a data silo by request type
+      summary: List Pending Requests For a Data Silo By Type
+      operationId: listDataSiloPendingRequests
       parameters:
         - in: path
           name: id
@@ -131,48 +244,527 @@ paths:
           required: true
           schema:
             type: string
+            enum: [ACCESS, ERASURE, OPT_IN, OPT_OUT]
       responses:
         "200":
           description: Pending requests
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DataSubjectRequest'
   /v1/preferences:
     put:
       tags: [Preferences]
-      summary: Upsert preferences for a data subject
+      summary: Upsert Preferences for a Data Subject
+      operationId: upsertPreferences
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PreferenceUpsert'
       responses:
         "200":
           description: Updated
-  /sync:
-    get:
+  /v1/preferences/{partition}/query:
+    post:
       tags: [Preferences]
-      summary: Sync consent and preference state
+      summary: Query Preferences in a Partition
+      operationId: queryPreferences
+      parameters:
+        - $ref: '#/components/parameters/Partition'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                identifiers:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Identifier'
       responses:
         "200":
-          description: Sync payload
+          description: Matching preferences
+  /v1/preferences/{partition}/delete:
+    post:
+      tags: [Preferences]
+      summary: Delete Preference Records
+      operationId: deletePreferences
+      parameters:
+        - $ref: '#/components/parameters/Partition'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                identifiers:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Identifier'
+      responses:
+        "200":
+          description: Deleted
+  /v1/preferences/{partition}/append-identifiers:
+    post:
+      tags: [Preferences]
+      summary: Append Identifiers To Preference Records
+      operationId: appendPreferenceIdentifiers
+      parameters:
+        - $ref: '#/components/parameters/Partition'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IdentifierMutation'
+      responses:
+        "200":
+          description: Appended
+  /v1/preferences/{partition}/update-identifiers:
+    post:
+      tags: [Preferences]
+      summary: Update Identifiers On Preference Records
+      operationId: updatePreferenceIdentifiers
+      parameters:
+        - $ref: '#/components/parameters/Partition'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IdentifierMutation'
+      responses:
+        "200":
+          description: Updated
+  /v1/preferences/{partition}/delete-identifiers:
+    post:
+      tags: [Preferences]
+      summary: Delete Identifiers From Preference Records
+      operationId: deletePreferenceIdentifiers
+      parameters:
+        - $ref: '#/components/parameters/Partition'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IdentifierMutation'
+      responses:
+        "200":
+          description: Deleted
+  /sync:
+    get:
+      tags: [Consent]
+      summary: Get Consent and Preference State
+      operationId: getConsentSync
+      responses:
+        "200":
+          description: Consent payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConsentSync'
+    post:
+      tags: [Consent]
+      summary: Set Consent and Preference State
+      operationId: postConsentSync
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConsentSync'
+      responses:
+        "200":
+          description: Synced
   /llm/classify-text:
     post:
       tags: [LLM Classifier]
-      summary: Classify text using Transcend's LLM classifier
+      summary: Classify Text Using Transcend's LLM Classifier
+      operationId: classifyText
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClassifyTextInput'
       responses:
         "200":
           description: Classification result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Classification'
   /classify/unstructured-text:
     post:
       tags: [LLM Classifier]
-      summary: Classify unstructured text
+      summary: Classify Unstructured Text For Named Entity Recognition
+      operationId: classifyUnstructuredText
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClassifyTextInput'
       responses:
         "200":
           description: Classification result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Classification'
   /public-keys/sombra-general-signing-key:
     get:
       tags: [Public Keys]
-      summary: Retrieve the Sombra general JWT signing key
+      summary: Retrieve the Sombra General JWT Signing Key
+      operationId: getSombraSigningKey
+      security: []
       responses:
         "200":
           description: Public key
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alg: { type: string }
+                  kid: { type: string }
+                  kty: { type: string }
+                  n:   { type: string }
+                  e:   { type: string }
 components:
   securitySchemes:
     Transcend_API_Key:
       type: apiKey
       in: header
       name: Authorization
-      description: API key issued from the Transcend admin dashboard.
+      description: API key issued from the Transcend admin dashboard. Send as `Authorization: Bearer <key>`.
+  parameters:
+    RequestId:
+      in: path
+      name: id
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: Data subject request identifier.
+    Partition:
+      in: path
+      name: partition
+      required: true
+      schema:
+        type: string
+      description: Preference store partition slug.
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimited:
+      description: Rate limit exceeded
+      headers:
+        Retry-After:
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    Identifier:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Identifier slug (e.g. email, phone, userId).
+        value:
+          type: string
+    RequestIdentifier:
+      allOf:
+        - $ref: '#/components/schemas/Identifier'
+        - type: object
+          properties:
+            type:
+              type: string
+              enum: [EMAIL, PHONE, USER_ID, CUSTOM]
+    DataSubjectRequestType:
+      type: string
+      enum: [ACCESS, ERASURE, OPT_IN, OPT_OUT, RECTIFICATION, RESTRICTION, AUTO_FULFILL]
+    DataSubjectRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        type:
+          $ref: '#/components/schemas/DataSubjectRequestType'
+        status:
+          type: string
+          enum: [REQUEST_MADE, IN_PROGRESS, COMPLETED, FAILED, REJECTED, REVOKED]
+        coreIdentifier:
+          $ref: '#/components/schemas/Identifier'
+        subjectType:
+          type: string
+        locale:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        completedAt:
+          type: string
+          format: date-time
+    DataSubjectRequestInput:
+      type: object
+      required: [type, subject]
+      properties:
+        type:
+          $ref: '#/components/schemas/DataSubjectRequestType'
+        subject:
+          $ref: '#/components/schemas/Identifier'
+        subjectType:
+          type: string
+        locale:
+          type: string
+        details:
+          type: string
+        isSilent:
+          type: boolean
+    DownloadKey:
+      type: object
+      properties:
+        key:
+          type: string
+        signedUrl:
+          type: string
+          format: uri
+        expiresAt:
+          type: string
+          format: date-time
+    File:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        mimeType:
+          type: string
+        size:
+          type: integer
+    Datapoint:
+      type: object
+      properties:
+        name:
+          type: string
+        path:
+          type: array
+          items:
+            type: string
+        value:
+          description: Arbitrary JSON value associated with the datapoint.
+    DatapointBatch:
+      type: object
+      properties:
+        requestId:
+          type: string
+        dataSiloId:
+          type: string
+        datapoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Datapoint'
+    DataSilo:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+          description: Integration type slug (e.g. server, aws, salesforce).
+        url:
+          type: string
+          format: uri
+        description:
+          type: string
+        headers:
+          type: array
+          items:
+            type: object
+            properties:
+              name: { type: string }
+              value: { type: string }
+              isSecret: { type: boolean }
+        outerType:
+          type: string
+    PreferenceUpsert:
+      type: object
+      properties:
+        partition:
+          type: string
+        identifiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identifier'
+        records:
+          type: array
+          items:
+            type: object
+            properties:
+              purpose:
+                type: string
+              preference:
+                type: string
+              value:
+                oneOf:
+                  - type: boolean
+                  - type: string
+              timestamp:
+                type: string
+                format: date-time
+    IdentifierMutation:
+      type: object
+      properties:
+        identifiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identifier'
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identifier'
+    ConsentSync:
+      type: object
+      properties:
+        consent:
+          type: object
+          additionalProperties:
+            type: boolean
+        confirmed:
+          type: boolean
+        timestamp:
+          type: string
+          format: date-time
+        token:
+          type: string
+    ClassifyTextInput:
+      type: object
+      required: [text]
+      properties:
+        text:
+          type: string
+        labels:
+          type: array
+          items:
+            type: string
+        locale:
+          type: string
+    Classification:
+      type: object
+      properties:
+        labels:
+          type: array
+          items:
+            type: object
+            properties:
+              label:
+                type: string
+              score:
+                type: number
+                format: float
+        entities:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              text:
+                type: string
+              start:
+                type: integer
+              end:
+                type: integer
+webhooks:
+  dsrJobCreated:
+    post:
+      summary: New DSR Job
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type: { type: string, example: dsr-job }
+                request:
+                  $ref: '#/components/schemas/DataSubjectRequest'
+      responses:
+        "200":
+          description: Acknowledged
+  preflightRequestCreated:
+    post:
+      summary: New Preflight Request Job
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type: { type: string, example: preflight-request }
+                request:
+                  $ref: '#/components/schemas/DataSubjectRequest'
+      responses:
+        "200":
+          description: Acknowledged
+  manualDsrJobCreated:
+    post:
+      summary: New Manual DSR Job (Authorized Verified Channel)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type: { type: string, example: manual-dsr }
+                request:
+                  $ref: '#/components/schemas/DataSubjectRequest'
+      responses:
+        "200":
+          description: Acknowledged
+  consentManagerDeployed:
+    post:
+      summary: Consent Manager Deployed
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type: { type: string, example: consent-manager-deployed }
+                bundleId: { type: string }
+                airgapVersion: { type: string }
+      responses:
+        "200":
+          description: Acknowledged

@@ -1,0 +1,10 @@
+{
+  "operation": "POST /sync",
+  "request": {
+    "consent": { "Analytics": true, "Advertising": false, "Functional": true },
+    "confirmed": true,
+    "timestamp": "2026-05-25T17:21:04Z",
+    "token": "encoded-airgap-token"
+  },
+  "response": { "status": "SYNCED" }
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-schema/transcend-data-subject-request-schema.json",
+  "title": "DataSubjectRequest",
+  "description": "A Transcend data subject request (DSR).",
+  "type": "object",
+  "required": ["id", "type", "status", "coreIdentifier"],
+  "properties": {
+    "id": { "type": "string", "format": "uuid" },
+    "type": {
+      "type": "string",
+      "enum": ["ACCESS", "ERASURE", "OPT_IN", "OPT_OUT", "RECTIFICATION", "RESTRICTION", "AUTO_FULFILL"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["REQUEST_MADE", "IN_PROGRESS", "COMPLETED", "FAILED", "REJECTED", "REVOKED"]
+    },
+    "coreIdentifier": { "$ref": "#/$defs/Identifier" },
+    "subjectType": { "type": "string" },
+    "locale": { "type": "string" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "completedAt": { "type": "string", "format": "date-time" }
+  },
+  "$defs": {
+    "Identifier": {
+      "type": "object",
+      "required": ["name", "value"],
+      "properties": {
+        "name": { "type": "string" },
+        "value": { "type": "string" },
+        "type": { "type": "string", "enum": ["EMAIL", "PHONE", "USER_ID", "CUSTOM"] }
+      }
+    }
+  }
+}

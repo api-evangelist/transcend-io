@@ -1,0 +1,19 @@
+{
+  "operation": "POST /llm/classify-text",
+  "request": {
+    "text": "Contact Jane Doe at jane@example.com or +1 555-123-4567.",
+    "labels": ["PII", "PHI", "PCI", "None"],
+    "locale": "en-US"
+  },
+  "response": {
+    "labels": [
+      { "label": "PII", "score": 0.97 },
+      { "label": "None", "score": 0.02 }
+    ],
+    "entities": [
+      { "type": "PERSON", "text": "Jane Doe", "start": 8, "end": 16 },
+      { "type": "EMAIL", "text": "jane@example.com", "start": 20, "end": 36 },
+      { "type": "PHONE", "text": "+1 555-123-4567", "start": 40, "end": 55 }
+    ]
+  }
+}

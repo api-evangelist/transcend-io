@@ -2,13 +2,13 @@
   "repo": "transcend-io",
   "feeds": [
     {
-      "source": "https://transcend.io/press",
-      "feed_url": "https://transcend.io/press",
-      "title": "",
+      "source": "https://transcend.io/blog",
+      "feed_url": "",
       "saved": 0,
-      "method": "none"
+      "method": "agent-scrape"
     }
   ],
-  "post_count": 0,
-  "fetched": "2026-06-14T20:42:17Z"
+  "post_count": 1,
+  "fetched": "2026-06-27T13:16:26Z",
+  "agent_pulled": "2026-06-27"
 }

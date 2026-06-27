@@ -66,7 +66,7 @@ apis:
     url: https://docs.transcend.io/docs/api-reference
   - type: Status
     url: https://status.transcend.io
-  - type: SignUp
+  - type: Signup
     url: https://app.transcend.io/login
   - type: LocalOpenAPI
     url: https://raw.githubusercontent.com/api-evangelist/transcend-io/main/openapi/transcend-io-openapi.yml
@@ -285,14 +285,14 @@ common:
   url: https://github.com/transcend-io
 - type: Status
   url: https://status.transcend.io
-- type: SignUp
+- type: Signup
   url: https://app.transcend.io/login
-- type: LLMsTxt
+- type: LlmsText
   url: https://docs.transcend.io/llms.txt
 - type: CLI
   title: Transcend CLI
   url: https://github.com/transcend-io/tools/tree/main/packages/cli
-- type: SDK
+- type: SDKs
   title: Transcend Node.js SDK
   url: https://github.com/transcend-io/tools/tree/main/packages/sdk
 - type: Tools

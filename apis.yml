@@ -273,6 +273,12 @@ apis:
   - type: API Key
     description: Transcend API key supplied to the MCP server via environment variable.
 common:
+- type: TrustCenter
+  url: security/transcend-io-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/transcend-io-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/transcend-io-domain-security.yml
 - type: Website
   url: https://transcend.io/
 - type: Documentation

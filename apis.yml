@@ -10,9 +10,21 @@ description: >-
   that lets teams manage their data map as code. The platform serves AI, consumer, healthcare, fintech, media, and B2B
   enterprises.
 type: Index
+accessModel:
+  pricing: enterprise
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
 position: Provider
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/transcend-io.png
 tags:
 - Transcend
 - Privacy

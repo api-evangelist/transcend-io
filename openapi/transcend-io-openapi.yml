@@ -444,7 +444,7 @@ components:
       type: apiKey
       in: header
       name: Authorization
-      description: API key issued from the Transcend admin dashboard. Send as `Authorization: Bearer <key>`.
+      description: "API key issued from the Transcend admin dashboard. Send as `Authorization: Bearer <key>`."
   parameters:
     RequestId:
       in: path

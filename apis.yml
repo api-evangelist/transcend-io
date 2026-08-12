@@ -48,106 +48,6 @@ created: '2026-05-23'
 modified: '2026-05-25'
 specificationVersion: '0.20'
 apis:
-- aid: transcend-io:transcend-api
-  name: Transcend API
-  description: >-
-    REST API that powers Transcend's privacy operations, including data subject requests, preflight identifier
-    enrichment, custom integrations for access and erasure, preferences and consent management, an LLM classifier for
-    NER and text classification, public JWT signing keys, and webhooks for DSR jobs, preflight requests, and consent
-    manager deployment. The API is described by an OpenAPI specification and is available on both EU and US backends,
-    with the EU backend as the CLI default.
-  humanURL: https://docs.transcend.io/docs/api-reference
-  baseURL: https://api.transcend.io
-  tags:
-  - DSR
-  - Consent
-  - Preferences
-  - Webhooks
-  - LLM Classifier
-  - Custom Integration
-  properties:
-  - type: Documentation
-    url: https://docs.transcend.io/docs/api-reference
-  - type: OpenAPI
-    url: https://docs.transcend.io/api/oas.json
-  - type: OpenAPI30
-    url: https://docs.transcend.io/api/oas.json?v=3.0
-  - type: USBackend
-    url: https://api.us.transcend.io
-  - type: Webhooks
-    url: https://docs.transcend.io/docs/api-reference
-  - type: Status
-    url: https://status.transcend.io
-  - type: Signup
-    url: https://app.transcend.io/login
-  - type: LocalOpenAPI
-    url: https://raw.githubusercontent.com/api-evangelist/transcend-io/main/openapi/transcend-io-openapi.yml
-  - type: SpectralRules
-    url: https://raw.githubusercontent.com/api-evangelist/transcend-io/main/rules/transcend-rules.yml
-  - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-schema/transcend-data-subject-request-schema.json
-  - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-schema/transcend-preference-record-schema.json
-  - type: JSONLD
-    url: https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-ld/transcend-io-context.jsonld
-  - type: Vocabulary
-    url: https://raw.githubusercontent.com/api-evangelist/transcend-io/main/vocabulary/transcend-io-vocabulary.yml
-  - type: Plans
-    url: https://raw.githubusercontent.com/api-evangelist/transcend-io/main/plans/transcend-io-plans-pricing.yml
-  - type: RateLimits
-    url: https://raw.githubusercontent.com/api-evangelist/transcend-io/main/rate-limits/transcend-io-rate-limits.yml
-  - type: FinOps
-    url: https://raw.githubusercontent.com/api-evangelist/transcend-io/main/finops/transcend-io-finops.yml
-  features:
-  - name: Data Subject Request Automation
-    description: Submit DSRs, poll status, retrieve download keys, and list request identifiers programmatically.
-  - name: Preflight Identifier Enrichment
-    description: Enrich identifiers before processing requests to ensure clean fulfillment downstream.
-  - name: Custom Integration Handling
-    description: >-
-      Stream access request files, chunked or bulk JSON uploads, and manage erasure, opt-in, and opt-out requests
-      through your own systems.
-  - name: Consent and Preference Management
-    description: Server-side and client-side preference APIs that keep consent in sync across channels and identifiers.
-  - name: LLM Classifier
-    description: Text classification and Named Entity Recognition for unstructured data discovery.
-  - name: Public JWT Keys
-    description: Exposes JWT signing keys so partners can verify Transcend-issued tokens.
-  - name: Webhooks
-    description: Event notifications for DSR jobs, preflight requests, and consent manager deployment.
-  - name: OpenAPI Specification
-    description: Machine-readable OpenAPI 3.1 and 3.0 specs available for SDK and tooling generation.
-  useCases:
-  - name: Automated DSR Fulfillment
-    description: Receive access and erasure requests and fulfill them across internal systems with custom integrations.
-  - name: Unified Preference Store
-    description: Sync customer marketing and privacy preferences across web, mobile, and backend systems.
-  - name: AI Data Permissioning
-    description: Decide whether customer data can be used for AI training or inference in real time.
-  - name: Consent Logging
-    description: Capture and prove consent across regions and regulations like GDPR and CCPA.
-  - name: Data Map as Code
-    description: Define data silos and inventory in transcend.yml and sync to the admin dashboard via CLI.
-  integrations:
-  - name: Salesforce
-  - name: HubSpot
-  - name: Snowflake
-  - name: BigQuery
-  - name: Databricks
-  - name: AWS
-  - name: GCP
-  - name: Azure
-  - name: Segment
-  - name: Slack
-  - name: Zendesk
-  - name: Stripe
-  authentication:
-  - type: API Key
-    description: API key authentication issued from the Transcend admin dashboard for server-side calls.
-  - type: JWT
-    description: JWT-based authentication supported, with public signing keys exposed via the API.
 - aid: transcend-io:transcend-graphql-api
   name: Transcend GraphQL API
   description: >-
@@ -172,7 +72,8 @@ apis:
   - name: Account Management
     description: Manage accounts, roles, and access to the Transcend platform.
   - name: Configuration as Code
-    description: Pair with transcend.yml and the CLI to manage Transcend configuration through version control.
+    description: >-
+      Pair with transcend.yml and the CLI to manage Transcend configuration through version control.
   useCases:
   - name: Programmatic Onboarding
     description: Provision Transcend accounts and data silos at scale for large enterprises.
@@ -188,9 +89,9 @@ apis:
 - aid: transcend-io:transcend-cli
   name: Transcend CLI
   description: >-
-    Official command line interface for Transcend, distributed on npm as @transcend-io/cli. Supports schema sync,
-    transcend.yml-based data map definitions, and a wide range of platform operations. Defaults to the EU backend,
-    with a flag to target the US backend.
+    Official command line interface for Transcend, distributed on npm as @transcend-io/cli. Supports schema
+    sync, transcend.yml-based data map definitions, and a wide range of platform operations. Defaults
+    to the EU backend, with a flag to target the US backend.
   humanURL: https://github.com/transcend-io/cli
   tags:
   - CLI
@@ -206,7 +107,8 @@ apis:
     url: https://docs.transcend.io/docs/api-reference
   features:
   - name: transcend.yml Sync
-    description: Define data silos, integrations, and other config in YAML and sync back to the admin dashboard.
+    description: >-
+      Define data silos, integrations, and other config in YAML and sync back to the admin dashboard.
   - name: Schema Sync
     description: Sync data schemas between source systems and the Transcend data inventory.
   - name: Multi-Region Support
@@ -267,15 +169,20 @@ apis:
   features:
   - name: Agent-Friendly Privacy Ops
     description: >-
-      Expose Transcend admin, assessment, consent, discovery, DSR, inventory, preferences, and workflow operations
-      to AI agents via MCP.
+      Expose Transcend admin, assessment, consent, discovery, DSR, inventory, preferences, and workflow
+      operations to AI agents via MCP.
   - name: Per-Domain Servers
-    description: Eight scoped MCP servers let agents work against a single Transcend domain rather than the full API surface.
+    description: >-
+      Eight scoped MCP servers let agents work against a single Transcend domain rather than the full
+      API surface.
   useCases:
   - name: AI Governance Copilot
-    description: Let an AI agent answer privacy questions, draft assessments, and manage consent through scoped MCP servers.
+    description: >-
+      Let an AI agent answer privacy questions, draft assessments, and manage consent through scoped MCP
+      servers.
   - name: Automated Privacy Operations
-    description: Orchestrate DSR fulfillment, inventory updates, and preference syncs from agent-driven workflows.
+    description: >-
+      Orchestrate DSR fulfillment, inventory updates, and preference syncs from agent-driven workflows.
   integrations:
   - name: Claude
   - name: Anthropic
@@ -284,6 +191,399 @@ apis:
   authentication:
   - type: API Key
     description: Transcend API key supplied to the MCP server via environment variable.
+- aid: transcend-io:transcend-io-consent-api
+  name: Transcend Consent API
+  description: Client-side consent sync used by the Consent Manager.
+  humanURL: https://docs.transcend.io/docs/api-reference
+  baseURL: https://api.transcend.io
+  tags:
+  - Consent
+  properties:
+  - type: OpenAPI
+    url: openapi/transcend-io-consent-api-openapi.yml
+  - type: Documentation
+    url: https://docs.transcend.io/docs/api-reference
+  - type: OpenAPI30
+    url: https://docs.transcend.io/api/oas.json?v=3.0
+  - type: USBackend
+    url: https://api.us.transcend.io
+  - type: Webhooks
+    url: https://docs.transcend.io/docs/api-reference
+  - type: Status
+    url: https://status.transcend.io
+  - type: Signup
+    url: https://app.transcend.io/login
+  - type: LocalOpenAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/openapi/transcend-io-openapi.yml
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/rules/transcend-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-schema/transcend-data-subject-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-schema/transcend-preference-record-schema.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-ld/transcend-io-context.jsonld
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/vocabulary/transcend-io-vocabulary.yml
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/plans/transcend-io-plans-pricing.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/rate-limits/transcend-io-rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/finops/transcend-io-finops.yml
+- aid: transcend-io:transcend-io-custom-integration-api
+  name: Transcend Custom Integration API
+  description: >-
+    Stream files, push datapoints, and respond to access, erasure, opt-in, and opt-out requests.
+  humanURL: https://docs.transcend.io/docs/api-reference
+  baseURL: https://api.transcend.io
+  tags:
+  - Custom Integration
+  properties:
+  - type: OpenAPI
+    url: openapi/transcend-io-custom-integration-api-openapi.yml
+  - type: Documentation
+    url: https://docs.transcend.io/docs/api-reference
+  - type: OpenAPI30
+    url: https://docs.transcend.io/api/oas.json?v=3.0
+  - type: USBackend
+    url: https://api.us.transcend.io
+  - type: Webhooks
+    url: https://docs.transcend.io/docs/api-reference
+  - type: Status
+    url: https://status.transcend.io
+  - type: Signup
+    url: https://app.transcend.io/login
+  - type: LocalOpenAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/openapi/transcend-io-openapi.yml
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/rules/transcend-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-schema/transcend-data-subject-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-schema/transcend-preference-record-schema.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-ld/transcend-io-context.jsonld
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/vocabulary/transcend-io-vocabulary.yml
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/plans/transcend-io-plans-pricing.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/rate-limits/transcend-io-rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/finops/transcend-io-finops.yml
+- aid: transcend-io:transcend-io-data-subject-request-api
+  name: Transcend Data Subject Request API
+  description: Submit, poll, and download data subject requests.
+  humanURL: https://docs.transcend.io/docs/api-reference
+  baseURL: https://api.transcend.io
+  tags:
+  - Data Subject Request
+  properties:
+  - type: OpenAPI
+    url: openapi/transcend-io-data-subject-request-api-openapi.yml
+  - type: Documentation
+    url: https://docs.transcend.io/docs/api-reference
+  - type: OpenAPI30
+    url: https://docs.transcend.io/api/oas.json?v=3.0
+  - type: USBackend
+    url: https://api.us.transcend.io
+  - type: Webhooks
+    url: https://docs.transcend.io/docs/api-reference
+  - type: Status
+    url: https://status.transcend.io
+  - type: Signup
+    url: https://app.transcend.io/login
+  - type: LocalOpenAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/openapi/transcend-io-openapi.yml
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/rules/transcend-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-schema/transcend-data-subject-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-schema/transcend-preference-record-schema.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-ld/transcend-io-context.jsonld
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/vocabulary/transcend-io-vocabulary.yml
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/plans/transcend-io-plans-pricing.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/rate-limits/transcend-io-rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/finops/transcend-io-finops.yml
+- aid: transcend-io:transcend-io-llm-classifier-api
+  name: Transcend LLM Classifier API
+  description: Text classification and Named Entity Recognition for unstructured data discovery.
+  humanURL: https://docs.transcend.io/docs/api-reference
+  baseURL: https://api.transcend.io
+  tags:
+  - LLM Classifier
+  properties:
+  - type: OpenAPI
+    url: openapi/transcend-io-llm-classifier-api-openapi.yml
+  - type: Documentation
+    url: https://docs.transcend.io/docs/api-reference
+  - type: OpenAPI30
+    url: https://docs.transcend.io/api/oas.json?v=3.0
+  - type: USBackend
+    url: https://api.us.transcend.io
+  - type: Webhooks
+    url: https://docs.transcend.io/docs/api-reference
+  - type: Status
+    url: https://status.transcend.io
+  - type: Signup
+    url: https://app.transcend.io/login
+  - type: LocalOpenAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/openapi/transcend-io-openapi.yml
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/rules/transcend-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-schema/transcend-data-subject-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-schema/transcend-preference-record-schema.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-ld/transcend-io-context.jsonld
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/vocabulary/transcend-io-vocabulary.yml
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/plans/transcend-io-plans-pricing.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/rate-limits/transcend-io-rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/finops/transcend-io-finops.yml
+- aid: transcend-io:transcend-io-preferences-api
+  name: Transcend Preferences API
+  description: Server-side preference store CRUD and query operations.
+  humanURL: https://docs.transcend.io/docs/api-reference
+  baseURL: https://api.transcend.io
+  tags:
+  - Preferences
+  properties:
+  - type: OpenAPI
+    url: openapi/transcend-io-preferences-api-openapi.yml
+  - type: Documentation
+    url: https://docs.transcend.io/docs/api-reference
+  - type: OpenAPI30
+    url: https://docs.transcend.io/api/oas.json?v=3.0
+  - type: USBackend
+    url: https://api.us.transcend.io
+  - type: Webhooks
+    url: https://docs.transcend.io/docs/api-reference
+  - type: Status
+    url: https://status.transcend.io
+  - type: Signup
+    url: https://app.transcend.io/login
+  - type: LocalOpenAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/openapi/transcend-io-openapi.yml
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/rules/transcend-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-schema/transcend-data-subject-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-schema/transcend-preference-record-schema.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-ld/transcend-io-context.jsonld
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/vocabulary/transcend-io-vocabulary.yml
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/plans/transcend-io-plans-pricing.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/rate-limits/transcend-io-rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/finops/transcend-io-finops.yml
+- aid: transcend-io:transcend-io-preflight-api
+  name: Transcend Preflight API
+  description: Enrich identifiers before downstream DSR processing.
+  humanURL: https://docs.transcend.io/docs/api-reference
+  baseURL: https://api.transcend.io
+  tags:
+  - Preflight
+  properties:
+  - type: OpenAPI
+    url: openapi/transcend-io-preflight-api-openapi.yml
+  - type: Documentation
+    url: https://docs.transcend.io/docs/api-reference
+  - type: OpenAPI30
+    url: https://docs.transcend.io/api/oas.json?v=3.0
+  - type: USBackend
+    url: https://api.us.transcend.io
+  - type: Webhooks
+    url: https://docs.transcend.io/docs/api-reference
+  - type: Status
+    url: https://status.transcend.io
+  - type: Signup
+    url: https://app.transcend.io/login
+  - type: LocalOpenAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/openapi/transcend-io-openapi.yml
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/rules/transcend-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-schema/transcend-data-subject-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-schema/transcend-preference-record-schema.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-ld/transcend-io-context.jsonld
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/vocabulary/transcend-io-vocabulary.yml
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/plans/transcend-io-plans-pricing.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/rate-limits/transcend-io-rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/finops/transcend-io-finops.yml
+- aid: transcend-io:transcend-io-public-keys-api
+  name: Transcend Public Keys API
+  description: Public JWT signing keys exposed by the Sombra gateway.
+  humanURL: https://docs.transcend.io/docs/api-reference
+  baseURL: https://api.transcend.io
+  tags:
+  - Public Keys
+  properties:
+  - type: OpenAPI
+    url: openapi/transcend-io-public-keys-api-openapi.yml
+  - type: Documentation
+    url: https://docs.transcend.io/docs/api-reference
+  - type: OpenAPI30
+    url: https://docs.transcend.io/api/oas.json?v=3.0
+  - type: USBackend
+    url: https://api.us.transcend.io
+  - type: Webhooks
+    url: https://docs.transcend.io/docs/api-reference
+  - type: Status
+    url: https://status.transcend.io
+  - type: Signup
+    url: https://app.transcend.io/login
+  - type: LocalOpenAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/openapi/transcend-io-openapi.yml
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/rules/transcend-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-schema/transcend-data-subject-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-schema/transcend-preference-record-schema.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-ld/transcend-io-context.jsonld
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/vocabulary/transcend-io-vocabulary.yml
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/plans/transcend-io-plans-pricing.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/rate-limits/transcend-io-rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/finops/transcend-io-finops.yml
+- aid: transcend-io:transcend-io-transcend-api-api
+  name: Transcend Transcend API API
+  description: The Transcend API API from Transcend — 0 operation(s) for transcend api.
+  humanURL: https://docs.transcend.io/docs/api-reference
+  baseURL: https://api.transcend.io
+  tags:
+  - Transcend API
+  properties:
+  - type: OpenAPI
+    url: openapi/transcend-io-transcend-api-api-openapi.yml
+  - type: Documentation
+    url: https://docs.transcend.io/docs/api-reference
+  - type: OpenAPI30
+    url: https://docs.transcend.io/api/oas.json?v=3.0
+  - type: USBackend
+    url: https://api.us.transcend.io
+  - type: Webhooks
+    url: https://docs.transcend.io/docs/api-reference
+  - type: Status
+    url: https://status.transcend.io
+  - type: Signup
+    url: https://app.transcend.io/login
+  - type: LocalOpenAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/openapi/transcend-io-openapi.yml
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/rules/transcend-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-schema/transcend-data-subject-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-schema/transcend-preference-record-schema.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-ld/transcend-io-context.jsonld
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/vocabulary/transcend-io-vocabulary.yml
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/plans/transcend-io-plans-pricing.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/rate-limits/transcend-io-rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/transcend-io/main/finops/transcend-io-finops.yml
 common:
 - type: TrustCenter
   url: security/transcend-io-trust-center.yml

@@ -1,0 +1,275 @@
+openapi: 3.2.0
+info:
+  title: Transcend Custom Integration API
+  version: '3.2'
+  description: 'Transcend''s REST API for privacy operations including data subject requests,
+
+    preflight identifier enrichment, custom integrations, consent and preference
+
+    management, LLM classifier, public JWT signing keys, and webhooks. Endpoints
+
+    and base URLs derived from the official OpenAPI at
+
+    https://docs.transcend.io/api/oas.json and the API reference at
+
+    https://docs.transcend.io/docs/api-reference.
+
+    '
+  contact:
+    name: Transcend
+    url: https://docs.transcend.io/docs/api-reference
+  license:
+    name: Proprietary
+    url: https://transcend.io/legal/terms-of-service
+servers:
+- url: https://api.transcend.io
+  description: EU Backend (CLI default)
+- url: https://api.us.transcend.io
+  description: US Backend
+- url: https://multi-tenant.sombra.transcend.io
+  description: Multi-tenant Sombra (EU)
+- url: https://multi-tenant.sombra.us.transcend.io
+  description: Multi-tenant Sombra (US)
+- url: https://consent.transcend.io
+  description: Preference Store (Europe)
+- url: https://consent.us.transcend.io
+  description: Preference Store (US)
+security:
+- Transcend_API_Key: []
+tags:
+- name: Custom Integration
+  description: Stream files, push datapoints, and respond to access, erasure, opt-in, and opt-out requests.
+paths:
+  /v1/files:
+    get:
+      tags:
+      - Custom Integration
+      summary: List Files for Custom Integration
+      operationId: listFiles
+      parameters:
+      - in: query
+        name: requestId
+        schema:
+          type: string
+      responses:
+        '200':
+          description: File listing
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  files:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/File'
+  /v1/datapoint:
+    post:
+      tags:
+      - Custom Integration
+      summary: Push Datapoints From a Custom Integration
+      operationId: pushDatapoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DatapointBatch'
+      responses:
+        '200':
+          description: Accepted
+  /v1/datapoint-chunked:
+    post:
+      tags:
+      - Custom Integration
+      summary: Push Chunked Datapoints
+      operationId: pushChunkedDatapoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DatapointBatch'
+      responses:
+        '200':
+          description: Accepted
+  /v1/data-silo:
+    post:
+      tags:
+      - Custom Integration
+      summary: Create or Sync a Data Silo
+      operationId: createDataSilo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataSilo'
+      responses:
+        '200':
+          description: Data silo
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSilo'
+    put:
+      tags:
+      - Custom Integration
+      summary: Update a Data Silo
+      operationId: updateDataSilo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataSilo'
+      responses:
+        '200':
+          description: Updated
+  /v1/data-silo/{id}/pending-requests/{type}:
+    get:
+      tags:
+      - Custom Integration
+      summary: List Pending Requests For a Data Silo By Type
+      operationId: listDataSiloPendingRequests
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: type
+        required: true
+        schema:
+          type: string
+          enum:
+          - ACCESS
+          - ERASURE
+          - OPT_IN
+          - OPT_OUT
+      responses:
+        '200':
+          description: Pending requests
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DataSubjectRequest'
+components:
+  schemas:
+    DatapointBatch:
+      type: object
+      properties:
+        requestId:
+          type: string
+        dataSiloId:
+          type: string
+        datapoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Datapoint'
+    File:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        mimeType:
+          type: string
+        size:
+          type: integer
+    Identifier:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Identifier slug (e.g. email, phone, userId).
+        value:
+          type: string
+    DataSubjectRequestType:
+      type: string
+      enum:
+      - ACCESS
+      - ERASURE
+      - OPT_IN
+      - OPT_OUT
+      - RECTIFICATION
+      - RESTRICTION
+      - AUTO_FULFILL
+    DataSilo:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+          description: Integration type slug (e.g. server, aws, salesforce).
+        url:
+          type: string
+          format: uri
+        description:
+          type: string
+        headers:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              value:
+                type: string
+              isSecret:
+                type: boolean
+        outerType:
+          type: string
+    DataSubjectRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        type:
+          $ref: '#/components/schemas/DataSubjectRequestType'
+        status:
+          type: string
+          enum:
+          - REQUEST_MADE
+          - IN_PROGRESS
+          - COMPLETED
+          - FAILED
+          - REJECTED
+          - REVOKED
+        coreIdentifier:
+          $ref: '#/components/schemas/Identifier'
+        subjectType:
+          type: string
+        locale:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        completedAt:
+          type: string
+          format: date-time
+    Datapoint:
+      type: object
+      properties:
+        name:
+          type: string
+        path:
+          type: array
+          items:
+            type: string
+        value:
+          description: Arbitrary JSON value associated with the datapoint.
+  securitySchemes:
+    Transcend_API_Key:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'API key issued from the Transcend admin dashboard. Send as `Authorization: Bearer <key>`.'

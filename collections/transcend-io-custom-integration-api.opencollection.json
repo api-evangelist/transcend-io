@@ -1,0 +1,127 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Transcend Custom Integration API",
+    "version": "3.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Custom Integration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Files for Custom Integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.transcend.io/v1/files",
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Files for Custom Integration"
+        },
+        {
+          "info": {
+            "name": "Push Datapoints From a Custom Integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.transcend.io/v1/datapoint",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Push Datapoints From a Custom Integration"
+        },
+        {
+          "info": {
+            "name": "Push Chunked Datapoints",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.transcend.io/v1/datapoint-chunked",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Push Chunked Datapoints"
+        },
+        {
+          "info": {
+            "name": "Create or Sync a Data Silo",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.transcend.io/v1/data-silo",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or Sync a Data Silo"
+        },
+        {
+          "info": {
+            "name": "Update a Data Silo",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.transcend.io/v1/data-silo",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a Data Silo"
+        },
+        {
+          "info": {
+            "name": "List Pending Requests For a Data Silo By Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.transcend.io/v1/data-silo/:id/pending-requests/:type",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List Pending Requests For a Data Silo By Type"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

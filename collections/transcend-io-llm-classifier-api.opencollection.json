@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Transcend LLM Classifier API",
+    "version": "3.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "LLM Classifier",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Classify Text Using Transcend's LLM Classifier",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.transcend.io/llm/classify-text",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Classify Text Using Transcend's LLM Classifier"
+        },
+        {
+          "info": {
+            "name": "Classify Unstructured Text For Named Entity Recognition",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.transcend.io/classify/unstructured-text",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Classify Unstructured Text For Named Entity Recognition"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

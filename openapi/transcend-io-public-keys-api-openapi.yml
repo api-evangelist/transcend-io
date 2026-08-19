@@ -1,0 +1,74 @@
+openapi: 3.2.0
+info:
+  title: Transcend Public Keys API
+  version: '3.2'
+  description: 'Transcend''s REST API for privacy operations including data subject requests,
+
+    preflight identifier enrichment, custom integrations, consent and preference
+
+    management, LLM classifier, public JWT signing keys, and webhooks. Endpoints
+
+    and base URLs derived from the official OpenAPI at
+
+    https://docs.transcend.io/api/oas.json and the API reference at
+
+    https://docs.transcend.io/docs/api-reference.
+
+    '
+  contact:
+    name: Transcend
+    url: https://docs.transcend.io/docs/api-reference
+  license:
+    name: Proprietary
+    url: https://transcend.io/legal/terms-of-service
+servers:
+- url: https://api.transcend.io
+  description: EU Backend (CLI default)
+- url: https://api.us.transcend.io
+  description: US Backend
+- url: https://multi-tenant.sombra.transcend.io
+  description: Multi-tenant Sombra (EU)
+- url: https://multi-tenant.sombra.us.transcend.io
+  description: Multi-tenant Sombra (US)
+- url: https://consent.transcend.io
+  description: Preference Store (Europe)
+- url: https://consent.us.transcend.io
+  description: Preference Store (US)
+security:
+- Transcend_API_Key: []
+tags:
+- name: Public Keys
+  description: Public JWT signing keys exposed by the Sombra gateway.
+paths:
+  /public-keys/sombra-general-signing-key:
+    get:
+      tags:
+      - Public Keys
+      summary: Retrieve the Sombra General JWT Signing Key
+      operationId: getSombraSigningKey
+      security: []
+      responses:
+        '200':
+          description: Public key
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alg:
+                    type: string
+                  kid:
+                    type: string
+                  kty:
+                    type: string
+                  n:
+                    type: string
+                  e:
+                    type: string
+components:
+  securitySchemes:
+    Transcend_API_Key:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'API key issued from the Transcend admin dashboard. Send as `Authorization: Bearer <key>`.'

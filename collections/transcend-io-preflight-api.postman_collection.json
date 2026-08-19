@@ -1,0 +1,139 @@
+{
+  "item": [
+    {
+      "id": "699aaf4e-8679-4bc4-8288-92b7c6f00743",
+      "name": "Preflight",
+      "description": {
+        "content": "Enrich identifiers before downstream DSR processing.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "aa5b0418-c6a8-4747-bf41-add125b9ad71",
+          "name": "Enrich Identifiers Before Downstream Processing",
+          "request": {
+            "name": "Enrich Identifiers Before Downstream Processing",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "enrich-identifiers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"requestId\": \"<string>\",\n  \"identifiers\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8e6689c7-7ebf-43cf-8fa8-e5b05fc6e1cc",
+              "name": "Enriched identifiers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "enrich-identifiers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"<string>\",\n  \"identifiers\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.transcend.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "12c8ae94-b5df-4c76-aa60-bd0580cf98fb",
+    "name": "Transcend Preflight API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Transcend's REST API for privacy operations including data subject requests,\npreflight identifier enrichment, custom integrations, consent and preference\nmanagement, LLM classifier, public JWT signing keys, and webhooks. Endpoints\nand base URLs derived from the official OpenAPI at\nhttps://docs.transcend.io/api/oas.json and the API reference at\nhttps://docs.transcend.io/docs/api-reference.\n\n\nContact Support:\n Name: Transcend",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Transcend Data Subject Request API",
+    "version": "3.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data Subject Request",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit a Data Subject Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.transcend.io/v1/data-subject-request",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a Data Subject Request"
+        },
+        {
+          "info": {
+            "name": "Retrieve a Data Subject Request by Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.transcend.io/v1/data-subject-request/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Data subject request identifier."
+              }
+            ]
+          },
+          "docs": "Retrieve a Data Subject Request by Id"
+        },
+        {
+          "info": {
+            "name": "Retrieve Download Keys for a Data Subject Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.transcend.io/v1/data-subject-request/:id/download-keys",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Data subject request identifier."
+              }
+            ]
+          },
+          "docs": "Retrieve Download Keys for a Data Subject Request"
+        },
+        {
+          "info": {
+            "name": "List Request Identifiers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.transcend.io/v1/request-identifiers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "List Request Identifiers"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

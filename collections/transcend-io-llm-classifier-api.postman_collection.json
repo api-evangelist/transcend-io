@@ -1,0 +1,245 @@
+{
+  "item": [
+    {
+      "id": "3100fc89-2463-4011-98b8-0ac3551f2981",
+      "name": "LLM Classifier",
+      "description": {
+        "content": "Text classification and Named Entity Recognition for unstructured data discovery.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bf84d740-8c3b-4aad-81c1-0506d99c5b96",
+          "name": "Classify Text Using Transcend's LLM Classifier",
+          "request": {
+            "name": "Classify Text Using Transcend's LLM Classifier",
+            "description": {},
+            "url": {
+              "path": [
+                "llm",
+                "classify-text"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"<string>\",\n  \"labels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"locale\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4df21193-f99d-4eaf-9be6-9160c7b8ba05",
+              "name": "Classification result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "llm",
+                    "classify-text"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"<string>\",\n  \"labels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"locale\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"labels\": [\n    {\n      \"label\": \"string\",\n      \"score\": 4249.934297426256\n    },\n    {\n      \"label\": \"string\",\n      \"score\": 1268.4472251921097\n    }\n  ],\n  \"entities\": [\n    {\n      \"type\": \"string\",\n      \"text\": \"string\",\n      \"start\": 4516,\n      \"end\": 7082\n    },\n    {\n      \"type\": \"string\",\n      \"text\": \"string\",\n      \"start\": 9436,\n      \"end\": 1247\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "093bf9e8-5c46-4ee3-b200-e97387fd4a9a",
+          "name": "Classify Unstructured Text For Named Entity Recognition",
+          "request": {
+            "name": "Classify Unstructured Text For Named Entity Recognition",
+            "description": {},
+            "url": {
+              "path": [
+                "classify",
+                "unstructured-text"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"<string>\",\n  \"labels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"locale\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ca49f11c-2b75-46a7-8d84-22b9e5928cca",
+              "name": "Classification result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "classify",
+                    "unstructured-text"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"<string>\",\n  \"labels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"locale\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"labels\": [\n    {\n      \"label\": \"string\",\n      \"score\": 6328.962678290995\n    },\n    {\n      \"label\": \"string\",\n      \"score\": 7810.537824608456\n    }\n  ],\n  \"entities\": [\n    {\n      \"type\": \"string\",\n      \"text\": \"string\",\n      \"start\": 7860,\n      \"end\": 3914\n    },\n    {\n      \"type\": \"string\",\n      \"text\": \"string\",\n      \"start\": 6017,\n      \"end\": 6850\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.transcend.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "afc5099b-c3a2-470b-a831-402105b49892",
+    "name": "Transcend LLM Classifier API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Transcend's REST API for privacy operations including data subject requests,\npreflight identifier enrichment, custom integrations, consent and preference\nmanagement, LLM classifier, public JWT signing keys, and webhooks. Endpoints\nand base URLs derived from the official OpenAPI at\nhttps://docs.transcend.io/api/oas.json and the API reference at\nhttps://docs.transcend.io/docs/api-reference.\n\n\nContact Support:\n Name: Transcend",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "item": [
+    {
+      "id": "be16b7ac-bd3d-416f-9904-fd31f0215ebf",
+      "name": "Public Keys",
+      "description": {
+        "content": "Public JWT signing keys exposed by the Sombra gateway.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2e1273b1-f84e-4c60-9d22-314a8c5b3800",
+          "name": "Retrieve the Sombra General JWT Signing Key",
+          "request": {
+            "name": "Retrieve the Sombra General JWT Signing Key",
+            "description": {},
+            "url": {
+              "path": [
+                "public-keys",
+                "sombra-general-signing-key"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0a4dbfa5-958e-487d-97c6-1ed921ea71b6",
+              "name": "Public key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public-keys",
+                    "sombra-general-signing-key"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"alg\": \"string\",\n  \"kid\": \"string\",\n  \"kty\": \"string\",\n  \"n\": \"string\",\n  \"e\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.transcend.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6497ddc7-e8f5-45f2-82c5-83b679b90069",
+    "name": "Transcend Public Keys API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Transcend's REST API for privacy operations including data subject requests,\npreflight identifier enrichment, custom integrations, consent and preference\nmanagement, LLM classifier, public JWT signing keys, and webhooks. Endpoints\nand base URLs derived from the official OpenAPI at\nhttps://docs.transcend.io/api/oas.json and the API reference at\nhttps://docs.transcend.io/docs/api-reference.\n\n\nContact Support:\n Name: Transcend",
+      "type": "text/plain"
+    }
+  }
+}

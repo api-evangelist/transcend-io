@@ -1,0 +1,91 @@
+openapi: 3.2.0
+info:
+  title: Transcend Consent API
+  version: '3.2'
+  description: 'Transcend''s REST API for privacy operations including data subject requests,
+
+    preflight identifier enrichment, custom integrations, consent and preference
+
+    management, LLM classifier, public JWT signing keys, and webhooks. Endpoints
+
+    and base URLs derived from the official OpenAPI at
+
+    https://docs.transcend.io/api/oas.json and the API reference at
+
+    https://docs.transcend.io/docs/api-reference.
+
+    '
+  contact:
+    name: Transcend
+    url: https://docs.transcend.io/docs/api-reference
+  license:
+    name: Proprietary
+    url: https://transcend.io/legal/terms-of-service
+servers:
+- url: https://api.transcend.io
+  description: EU Backend (CLI default)
+- url: https://api.us.transcend.io
+  description: US Backend
+- url: https://multi-tenant.sombra.transcend.io
+  description: Multi-tenant Sombra (EU)
+- url: https://multi-tenant.sombra.us.transcend.io
+  description: Multi-tenant Sombra (US)
+- url: https://consent.transcend.io
+  description: Preference Store (Europe)
+- url: https://consent.us.transcend.io
+  description: Preference Store (US)
+security:
+- Transcend_API_Key: []
+tags:
+- name: Consent
+  description: Client-side consent sync used by the Consent Manager.
+paths:
+  /sync:
+    get:
+      tags:
+      - Consent
+      summary: Get Consent and Preference State
+      operationId: getConsentSync
+      responses:
+        '200':
+          description: Consent payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConsentSync'
+    post:
+      tags:
+      - Consent
+      summary: Set Consent and Preference State
+      operationId: postConsentSync
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConsentSync'
+      responses:
+        '200':
+          description: Synced
+components:
+  schemas:
+    ConsentSync:
+      type: object
+      properties:
+        consent:
+          type: object
+          additionalProperties:
+            type: boolean
+        confirmed:
+          type: boolean
+        timestamp:
+          type: string
+          format: date-time
+        token:
+          type: string
+  securitySchemes:
+    Transcend_API_Key:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'API key issued from the Transcend admin dashboard. Send as `Authorization: Bearer <key>`.'

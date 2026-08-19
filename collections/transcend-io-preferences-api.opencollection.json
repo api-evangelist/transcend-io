@@ -1,0 +1,156 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Transcend Preferences API",
+    "version": "3.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Preferences",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upsert Preferences for a Data Subject",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.transcend.io/v1/preferences",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upsert Preferences for a Data Subject"
+        },
+        {
+          "info": {
+            "name": "Query Preferences in a Partition",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.transcend.io/v1/preferences/:partition/query",
+            "params": [
+              {
+                "name": "partition",
+                "value": "",
+                "type": "path",
+                "description": "Preference store partition slug."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Query Preferences in a Partition"
+        },
+        {
+          "info": {
+            "name": "Delete Preference Records",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.transcend.io/v1/preferences/:partition/delete",
+            "params": [
+              {
+                "name": "partition",
+                "value": "",
+                "type": "path",
+                "description": "Preference store partition slug."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete Preference Records"
+        },
+        {
+          "info": {
+            "name": "Append Identifiers To Preference Records",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.transcend.io/v1/preferences/:partition/append-identifiers",
+            "params": [
+              {
+                "name": "partition",
+                "value": "",
+                "type": "path",
+                "description": "Preference store partition slug."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Append Identifiers To Preference Records"
+        },
+        {
+          "info": {
+            "name": "Update Identifiers On Preference Records",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.transcend.io/v1/preferences/:partition/update-identifiers",
+            "params": [
+              {
+                "name": "partition",
+                "value": "",
+                "type": "path",
+                "description": "Preference store partition slug."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Identifiers On Preference Records"
+        },
+        {
+          "info": {
+            "name": "Delete Identifiers From Preference Records",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.transcend.io/v1/preferences/:partition/delete-identifiers",
+            "params": [
+              {
+                "name": "partition",
+                "value": "",
+                "type": "path",
+                "description": "Preference store partition slug."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete Identifiers From Preference Records"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,175 @@
+openapi: 3.2.0
+info:
+  title: Transcend Transcend API API
+  version: '3.2'
+  description: 'Transcend''s REST API for privacy operations including data subject requests,
+
+    preflight identifier enrichment, custom integrations, consent and preference
+
+    management, LLM classifier, public JWT signing keys, and webhooks. Endpoints
+
+    and base URLs derived from the official OpenAPI at
+
+    https://docs.transcend.io/api/oas.json and the API reference at
+
+    https://docs.transcend.io/docs/api-reference.
+
+    '
+  contact:
+    name: Transcend
+    url: https://docs.transcend.io/docs/api-reference
+  license:
+    name: Proprietary
+    url: https://transcend.io/legal/terms-of-service
+servers:
+- url: https://api.transcend.io
+  description: EU Backend (CLI default)
+- url: https://api.us.transcend.io
+  description: US Backend
+- url: https://multi-tenant.sombra.transcend.io
+  description: Multi-tenant Sombra (EU)
+- url: https://multi-tenant.sombra.us.transcend.io
+  description: Multi-tenant Sombra (US)
+- url: https://consent.transcend.io
+  description: Preference Store (Europe)
+- url: https://consent.us.transcend.io
+  description: Preference Store (US)
+security:
+- Transcend_API_Key: []
+tags:
+- name: Transcend API
+paths: {}
+webhooks:
+  dsrJobCreated:
+    post:
+      summary: New DSR Job
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                  example: dsr-job
+                request:
+                  $ref: '#/components/schemas/DataSubjectRequest'
+      responses:
+        '200':
+          description: Acknowledged
+      tags:
+      - Transcend API
+  preflightRequestCreated:
+    post:
+      summary: New Preflight Request Job
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                  example: preflight-request
+                request:
+                  $ref: '#/components/schemas/DataSubjectRequest'
+      responses:
+        '200':
+          description: Acknowledged
+      tags:
+      - Transcend API
+  manualDsrJobCreated:
+    post:
+      summary: New Manual DSR Job (Authorized Verified Channel)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                  example: manual-dsr
+                request:
+                  $ref: '#/components/schemas/DataSubjectRequest'
+      responses:
+        '200':
+          description: Acknowledged
+      tags:
+      - Transcend API
+  consentManagerDeployed:
+    post:
+      summary: Consent Manager Deployed
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                  example: consent-manager-deployed
+                bundleId:
+                  type: string
+                airgapVersion:
+                  type: string
+      responses:
+        '200':
+          description: Acknowledged
+      tags:
+      - Transcend API
+components:
+  schemas:
+    Identifier:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Identifier slug (e.g. email, phone, userId).
+        value:
+          type: string
+    DataSubjectRequestType:
+      type: string
+      enum:
+      - ACCESS
+      - ERASURE
+      - OPT_IN
+      - OPT_OUT
+      - RECTIFICATION
+      - RESTRICTION
+      - AUTO_FULFILL
+    DataSubjectRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        type:
+          $ref: '#/components/schemas/DataSubjectRequestType'
+        status:
+          type: string
+          enum:
+          - REQUEST_MADE
+          - IN_PROGRESS
+          - COMPLETED
+          - FAILED
+          - REJECTED
+          - REVOKED
+        coreIdentifier:
+          $ref: '#/components/schemas/Identifier'
+        subjectType:
+          type: string
+        locale:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        completedAt:
+          type: string
+          format: date-time
+  securitySchemes:
+    Transcend_API_Key:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'API key issued from the Transcend admin dashboard. Send as `Authorization: Bearer <key>`.'

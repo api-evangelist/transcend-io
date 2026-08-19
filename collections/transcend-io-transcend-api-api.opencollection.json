@@ -1,0 +1,17 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Transcend Transcend API API",
+    "version": "3.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [],
+  "bundled": true
+}

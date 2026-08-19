@@ -1,0 +1,48 @@
+{
+  "item": [
+    {
+      "id": "8ac597eb-2e97-42ec-9316-b2691cb37564",
+      "name": "Transcend API",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.transcend.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "891beae7-cb2e-458c-837e-cc4c06dbce9b",
+    "name": "Transcend Transcend API API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Transcend's REST API for privacy operations including data subject requests,\npreflight identifier enrichment, custom integrations, consent and preference\nmanagement, LLM classifier, public JWT signing keys, and webhooks. Endpoints\nand base URLs derived from the official OpenAPI at\nhttps://docs.transcend.io/api/oas.json and the API reference at\nhttps://docs.transcend.io/docs/api-reference.\n\n\nContact Support:\n Name: Transcend",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,212 @@
+openapi: 3.2.0
+info:
+  title: Transcend Preferences API
+  version: '3.2'
+  description: 'Transcend''s REST API for privacy operations including data subject requests,
+
+    preflight identifier enrichment, custom integrations, consent and preference
+
+    management, LLM classifier, public JWT signing keys, and webhooks. Endpoints
+
+    and base URLs derived from the official OpenAPI at
+
+    https://docs.transcend.io/api/oas.json and the API reference at
+
+    https://docs.transcend.io/docs/api-reference.
+
+    '
+  contact:
+    name: Transcend
+    url: https://docs.transcend.io/docs/api-reference
+  license:
+    name: Proprietary
+    url: https://transcend.io/legal/terms-of-service
+servers:
+- url: https://api.transcend.io
+  description: EU Backend (CLI default)
+- url: https://api.us.transcend.io
+  description: US Backend
+- url: https://multi-tenant.sombra.transcend.io
+  description: Multi-tenant Sombra (EU)
+- url: https://multi-tenant.sombra.us.transcend.io
+  description: Multi-tenant Sombra (US)
+- url: https://consent.transcend.io
+  description: Preference Store (Europe)
+- url: https://consent.us.transcend.io
+  description: Preference Store (US)
+security:
+- Transcend_API_Key: []
+tags:
+- name: Preferences
+  description: Server-side preference store CRUD and query operations.
+paths:
+  /v1/preferences:
+    put:
+      tags:
+      - Preferences
+      summary: Upsert Preferences for a Data Subject
+      operationId: upsertPreferences
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PreferenceUpsert'
+      responses:
+        '200':
+          description: Updated
+  /v1/preferences/{partition}/query:
+    post:
+      tags:
+      - Preferences
+      summary: Query Preferences in a Partition
+      operationId: queryPreferences
+      parameters:
+      - $ref: '#/components/parameters/Partition'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                identifiers:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Identifier'
+      responses:
+        '200':
+          description: Matching preferences
+  /v1/preferences/{partition}/delete:
+    post:
+      tags:
+      - Preferences
+      summary: Delete Preference Records
+      operationId: deletePreferences
+      parameters:
+      - $ref: '#/components/parameters/Partition'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                identifiers:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Identifier'
+      responses:
+        '200':
+          description: Deleted
+  /v1/preferences/{partition}/append-identifiers:
+    post:
+      tags:
+      - Preferences
+      summary: Append Identifiers To Preference Records
+      operationId: appendPreferenceIdentifiers
+      parameters:
+      - $ref: '#/components/parameters/Partition'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IdentifierMutation'
+      responses:
+        '200':
+          description: Appended
+  /v1/preferences/{partition}/update-identifiers:
+    post:
+      tags:
+      - Preferences
+      summary: Update Identifiers On Preference Records
+      operationId: updatePreferenceIdentifiers
+      parameters:
+      - $ref: '#/components/parameters/Partition'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IdentifierMutation'
+      responses:
+        '200':
+          description: Updated
+  /v1/preferences/{partition}/delete-identifiers:
+    post:
+      tags:
+      - Preferences
+      summary: Delete Identifiers From Preference Records
+      operationId: deletePreferenceIdentifiers
+      parameters:
+      - $ref: '#/components/parameters/Partition'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IdentifierMutation'
+      responses:
+        '200':
+          description: Deleted
+components:
+  schemas:
+    Identifier:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Identifier slug (e.g. email, phone, userId).
+        value:
+          type: string
+    IdentifierMutation:
+      type: object
+      properties:
+        identifiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identifier'
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identifier'
+    PreferenceUpsert:
+      type: object
+      properties:
+        partition:
+          type: string
+        identifiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identifier'
+        records:
+          type: array
+          items:
+            type: object
+            properties:
+              purpose:
+                type: string
+              preference:
+                type: string
+              value:
+                oneOf:
+                - type: boolean
+                - type: string
+              timestamp:
+                type: string
+                format: date-time
+  parameters:
+    Partition:
+      in: path
+      name: partition
+      required: true
+      schema:
+        type: string
+      description: Preference store partition slug.
+  securitySchemes:
+    Transcend_API_Key:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'API key issued from the Transcend admin dashboard. Send as `Authorization: Bearer <key>`.'

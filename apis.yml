@@ -37,6 +37,24 @@ tags:
 - GDPR
 - CCPA
 - Compliance
+- Webhook
+- GraphQL
+- MCP
+- SDK
+- Terraform
+- Helm
+tags_raw:
+- Transcend
+- Privacy
+- Data Governance
+- Consent
+- Preference Management
+- DSR
+- Data Inventory
+- AI Governance
+- GDPR
+- CCPA
+- Compliance
 - Webhooks
 - GraphQL
 - MCP
@@ -296,6 +314,8 @@ apis:
   humanURL: https://docs.transcend.io/docs/api-reference
   baseURL: https://api.transcend.io
   tags:
+  - data-subject-request
+  tags_raw:
   - Data Subject Request
   properties:
   - type: OpenAPI
@@ -492,6 +512,8 @@ apis:
   humanURL: https://docs.transcend.io/docs/api-reference
   baseURL: https://api.transcend.io
   tags:
+  - PublicKeys
+  tags_raw:
   - Public Keys
   properties:
   - type: OpenAPI

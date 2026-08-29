@@ -10,6 +10,19 @@ description: >-
   that lets teams manage their data map as code. The platform serves AI, consumer, healthcare, fintech, media, and B2B
   enterprises.
 type: Index
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: true
+  callable_host: true
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  - pricing
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: unknown
@@ -607,6 +620,8 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/transcend-io/main/finops/transcend-io-finops.yml
 common:
+- type: IssueTracker
+  url: https://github.com/transcend-io/cli/issues
 - type: TrustCenter
   url: security/transcend-io-trust-center.yml
 - type: VulnerabilityDisclosure

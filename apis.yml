@@ -327,7 +327,7 @@ apis:
   humanURL: https://docs.transcend.io/docs/api-reference
   baseURL: https://api.transcend.io
   tags:
-  - Data Subject Request
+  - data-subject-request
   tags_raw:
   - Data Subject Request
   properties:

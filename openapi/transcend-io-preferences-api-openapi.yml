@@ -12,9 +12,7 @@ info:
 
     https://docs.transcend.io/api/oas.json and the API reference at
 
-    https://docs.transcend.io/docs/api-reference.
-
-    '
+    https://docs.transcend.io/docs/api-reference.'
   contact:
     name: Transcend
     url: https://docs.transcend.io/docs/api-reference
@@ -151,6 +149,14 @@ paths:
         '200':
           description: Deleted
 components:
+  parameters:
+    Partition:
+      in: path
+      name: partition
+      required: true
+      schema:
+        type: string
+      description: Preference store partition slug.
   schemas:
     Identifier:
       type: object
@@ -196,14 +202,6 @@ components:
               timestamp:
                 type: string
                 format: date-time
-  parameters:
-    Partition:
-      in: path
-      name: partition
-      required: true
-      schema:
-        type: string
-      description: Preference store partition slug.
   securitySchemes:
     Transcend_API_Key:
       type: apiKey

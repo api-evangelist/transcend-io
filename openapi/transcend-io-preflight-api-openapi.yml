@@ -12,9 +12,7 @@ info:
 
     https://docs.transcend.io/api/oas.json and the API reference at
 
-    https://docs.transcend.io/docs/api-reference.
-
-    '
+    https://docs.transcend.io/docs/api-reference.'
   contact:
     name: Transcend
     url: https://docs.transcend.io/docs/api-reference
@@ -64,14 +62,6 @@ paths:
           description: Enriched identifiers
 components:
   schemas:
-    Identifier:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Identifier slug (e.g. email, phone, userId).
-        value:
-          type: string
     RequestIdentifier:
       allOf:
       - $ref: '#/components/schemas/Identifier'
@@ -84,6 +74,14 @@ components:
             - PHONE
             - USER_ID
             - CUSTOM
+    Identifier:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Identifier slug (e.g. email, phone, userId).
+        value:
+          type: string
   securitySchemes:
     Transcend_API_Key:
       type: apiKey

@@ -12,9 +12,7 @@ info:
 
     https://docs.transcend.io/api/oas.json and the API reference at
 
-    https://docs.transcend.io/docs/api-reference.
-
-    '
+    https://docs.transcend.io/docs/api-reference.'
   contact:
     name: Transcend
     url: https://docs.transcend.io/docs/api-reference

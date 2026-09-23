@@ -12,9 +12,7 @@ info:
 
     https://docs.transcend.io/api/oas.json and the API reference at
 
-    https://docs.transcend.io/docs/api-reference.
-
-    '
+    https://docs.transcend.io/docs/api-reference.'
   contact:
     name: Transcend
     url: https://docs.transcend.io/docs/api-reference
@@ -159,6 +157,16 @@ paths:
                   $ref: '#/components/schemas/DataSubjectRequest'
 components:
   schemas:
+    DataSubjectRequestType:
+      type: string
+      enum:
+      - ACCESS
+      - ERASURE
+      - OPT_IN
+      - OPT_OUT
+      - RECTIFICATION
+      - RESTRICTION
+      - AUTO_FULFILL
     DatapointBatch:
       type: object
       properties:
@@ -170,63 +178,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Datapoint'
-    File:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        mimeType:
-          type: string
-        size:
-          type: integer
-    Identifier:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Identifier slug (e.g. email, phone, userId).
-        value:
-          type: string
-    DataSubjectRequestType:
-      type: string
-      enum:
-      - ACCESS
-      - ERASURE
-      - OPT_IN
-      - OPT_OUT
-      - RECTIFICATION
-      - RESTRICTION
-      - AUTO_FULFILL
-    DataSilo:
-      type: object
-      properties:
-        id:
-          type: string
-        title:
-          type: string
-        type:
-          type: string
-          description: Integration type slug (e.g. server, aws, salesforce).
-        url:
-          type: string
-          format: uri
-        description:
-          type: string
-        headers:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              value:
-                type: string
-              isSecret:
-                type: boolean
-        outerType:
-          type: string
     DataSubjectRequest:
       type: object
       properties:
@@ -256,6 +207,53 @@ components:
         completedAt:
           type: string
           format: date-time
+    Identifier:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Identifier slug (e.g. email, phone, userId).
+        value:
+          type: string
+    File:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        mimeType:
+          type: string
+        size:
+          type: integer
+    DataSilo:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+          description: Integration type slug (e.g. server, aws, salesforce).
+        url:
+          type: string
+          format: uri
+        description:
+          type: string
+        headers:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              value:
+                type: string
+              isSecret:
+                type: boolean
+        outerType:
+          type: string
     Datapoint:
       type: object
       properties:

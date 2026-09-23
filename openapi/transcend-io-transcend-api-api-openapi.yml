@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Transcend Transcend API API
+  title: Transcend API
   version: '3.2'
   description: 'Transcend''s REST API for privacy operations including data subject requests,
 
@@ -12,9 +12,7 @@ info:
 
     https://docs.transcend.io/api/oas.json and the API reference at
 
-    https://docs.transcend.io/docs/api-reference.
-
-    '
+    https://docs.transcend.io/docs/api-reference.'
   contact:
     name: Transcend
     url: https://docs.transcend.io/docs/api-reference
@@ -120,24 +118,6 @@ webhooks:
       - Transcend API
 components:
   schemas:
-    Identifier:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Identifier slug (e.g. email, phone, userId).
-        value:
-          type: string
-    DataSubjectRequestType:
-      type: string
-      enum:
-      - ACCESS
-      - ERASURE
-      - OPT_IN
-      - OPT_OUT
-      - RECTIFICATION
-      - RESTRICTION
-      - AUTO_FULFILL
     DataSubjectRequest:
       type: object
       properties:
@@ -167,6 +147,24 @@ components:
         completedAt:
           type: string
           format: date-time
+    DataSubjectRequestType:
+      type: string
+      enum:
+      - ACCESS
+      - ERASURE
+      - OPT_IN
+      - OPT_OUT
+      - RECTIFICATION
+      - RESTRICTION
+      - AUTO_FULFILL
+    Identifier:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Identifier slug (e.g. email, phone, userId).
+        value:
+          type: string
   securitySchemes:
     Transcend_API_Key:
       type: apiKey

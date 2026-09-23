@@ -1,14 +1,7 @@
 {
   "provider": "transcend-io",
   "sources": [
-    "transcend-io-consent-api-openapi.yml",
-    "transcend-io-custom-integration-api-openapi.yml",
-    "transcend-io-data-subject-request-api-openapi.yml",
-    "transcend-io-llm-classifier-api-openapi.yml",
-    "transcend-io-preferences-api-openapi.yml",
-    "transcend-io-preflight-api-openapi.yml",
-    "transcend-io-public-keys-api-openapi.yml",
-    "transcend-io-transcend-api-api-openapi.yml"
+    "_original/transcend-io-openapi.yml"
   ],
   "outputs": [
     "transcend-io-consent-api-openapi.yml",
@@ -24,15 +17,23 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "transcend-io-consent-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "transcend-io-custom-integration-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "transcend-io-data-subject-request-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "transcend-io-llm-classifier-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "transcend-io-preferences-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "transcend-io-preflight-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "transcend-io-public-keys-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "transcend-io-transcend-api-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "transcend-io-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "transcend-io-openapi.yml: tagged webhooks POST dsrJobCreated -> Transcend API",
+    "transcend-io-openapi.yml: tagged webhooks POST preflightRequestCreated -> Transcend API",
+    "transcend-io-openapi.yml: tagged webhooks POST manualDsrJobCreated -> Transcend API",
+    "transcend-io-openapi.yml: tagged webhooks POST consentManagerDeployed -> Transcend API",
+    "transcend-io-openapi.yml: declared missing tag: Transcend API",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "transcend-io-consent-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "transcend-io-custom-integration-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "transcend-io-data-subject-request-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "transcend-io-llm-classifier-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "transcend-io-preferences-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "transcend-io-preflight-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "transcend-io-public-keys-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "transcend-io-transcend-api-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

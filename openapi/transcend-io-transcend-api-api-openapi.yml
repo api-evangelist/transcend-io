@@ -118,6 +118,24 @@ webhooks:
       - Transcend API
 components:
   schemas:
+    DataSubjectRequestType:
+      type: string
+      enum:
+      - ACCESS
+      - ERASURE
+      - OPT_IN
+      - OPT_OUT
+      - RECTIFICATION
+      - RESTRICTION
+      - AUTO_FULFILL
+    Identifier:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Identifier slug (e.g. email, phone, userId).
+        value:
+          type: string
     DataSubjectRequest:
       type: object
       properties:
@@ -147,24 +165,6 @@ components:
         completedAt:
           type: string
           format: date-time
-    DataSubjectRequestType:
-      type: string
-      enum:
-      - ACCESS
-      - ERASURE
-      - OPT_IN
-      - OPT_OUT
-      - RECTIFICATION
-      - RESTRICTION
-      - AUTO_FULFILL
-    Identifier:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Identifier slug (e.g. email, phone, userId).
-        value:
-          type: string
   securitySchemes:
     Transcend_API_Key:
       type: apiKey

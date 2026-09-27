@@ -157,16 +157,64 @@ paths:
                   $ref: '#/components/schemas/DataSubjectRequest'
 components:
   schemas:
-    DataSubjectRequestType:
-      type: string
-      enum:
-      - ACCESS
-      - ERASURE
-      - OPT_IN
-      - OPT_OUT
-      - RECTIFICATION
-      - RESTRICTION
-      - AUTO_FULFILL
+    Datapoint:
+      type: object
+      properties:
+        name:
+          type: string
+        path:
+          type: array
+          items:
+            type: string
+        value:
+          description: Arbitrary JSON value associated with the datapoint.
+    DataSilo:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+          description: Integration type slug (e.g. server, aws, salesforce).
+        url:
+          type: string
+          format: uri
+        description:
+          type: string
+        headers:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              value:
+                type: string
+              isSecret:
+                type: boolean
+        outerType:
+          type: string
+    File:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        mimeType:
+          type: string
+        size:
+          type: integer
+    Identifier:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Identifier slug (e.g. email, phone, userId).
+        value:
+          type: string
     DatapointBatch:
       type: object
       properties:
@@ -178,6 +226,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Datapoint'
+    DataSubjectRequestType:
+      type: string
+      enum:
+      - ACCESS
+      - ERASURE
+      - OPT_IN
+      - OPT_OUT
+      - RECTIFICATION
+      - RESTRICTION
+      - AUTO_FULFILL
     DataSubjectRequest:
       type: object
       properties:
@@ -207,64 +265,6 @@ components:
         completedAt:
           type: string
           format: date-time
-    Identifier:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Identifier slug (e.g. email, phone, userId).
-        value:
-          type: string
-    File:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        mimeType:
-          type: string
-        size:
-          type: integer
-    DataSilo:
-      type: object
-      properties:
-        id:
-          type: string
-        title:
-          type: string
-        type:
-          type: string
-          description: Integration type slug (e.g. server, aws, salesforce).
-        url:
-          type: string
-          format: uri
-        description:
-          type: string
-        headers:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              value:
-                type: string
-              isSecret:
-                type: boolean
-        outerType:
-          type: string
-    Datapoint:
-      type: object
-      properties:
-        name:
-          type: string
-        path:
-          type: array
-          items:
-            type: string
-        value:
-          description: Arbitrary JSON value associated with the datapoint.
   securitySchemes:
     Transcend_API_Key:
       type: apiKey

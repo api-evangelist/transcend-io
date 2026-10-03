@@ -149,14 +149,6 @@ paths:
         '200':
           description: Deleted
 components:
-  parameters:
-    Partition:
-      in: path
-      name: partition
-      required: true
-      schema:
-        type: string
-      description: Preference store partition slug.
   schemas:
     Identifier:
       type: object
@@ -202,6 +194,14 @@ components:
               timestamp:
                 type: string
                 format: date-time
+  parameters:
+    Partition:
+      in: path
+      name: partition
+      required: true
+      schema:
+        type: string
+      description: Preference store partition slug.
   securitySchemes:
     Transcend_API_Key:
       type: apiKey

@@ -127,14 +127,16 @@ paths:
                       $ref: '#/components/schemas/RequestIdentifier'
 components:
   schemas:
-    Identifier:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Identifier slug (e.g. email, phone, userId).
-        value:
-          type: string
+    DataSubjectRequestType:
+      type: string
+      enum:
+      - ACCESS
+      - ERASURE
+      - OPT_IN
+      - OPT_OUT
+      - RECTIFICATION
+      - RESTRICTION
+      - AUTO_FULFILL
     DownloadKey:
       type: object
       properties:
@@ -146,6 +148,51 @@ components:
         expiresAt:
           type: string
           format: date-time
+    DataSubjectRequestInput:
+      type: object
+      required:
+      - type
+      - subject
+      properties:
+        type:
+          $ref: '#/components/schemas/DataSubjectRequestType'
+        subject:
+          $ref: '#/components/schemas/Identifier'
+        subjectType:
+          type: string
+        locale:
+          type: string
+        details:
+          type: string
+        isSilent:
+          type: boolean
+    RequestIdentifier:
+      allOf:
+      - $ref: '#/components/schemas/Identifier'
+      - type: object
+        properties:
+          type:
+            type: string
+            enum:
+            - EMAIL
+            - PHONE
+            - USER_ID
+            - CUSTOM
+    Identifier:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Identifier slug (e.g. email, phone, userId).
+        value:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
     DataSubjectRequest:
       type: object
       properties:
@@ -175,54 +222,13 @@ components:
         completedAt:
           type: string
           format: date-time
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-    RequestIdentifier:
-      allOf:
-      - $ref: '#/components/schemas/Identifier'
-      - type: object
-        properties:
-          type:
-            type: string
-            enum:
-            - EMAIL
-            - PHONE
-            - USER_ID
-            - CUSTOM
-    DataSubjectRequestType:
-      type: string
-      enum:
-      - ACCESS
-      - ERASURE
-      - OPT_IN
-      - OPT_OUT
-      - RECTIFICATION
-      - RESTRICTION
-      - AUTO_FULFILL
-    DataSubjectRequestInput:
-      type: object
-      required:
-      - type
-      - subject
-      properties:
-        type:
-          $ref: '#/components/schemas/DataSubjectRequestType'
-        subject:
-          $ref: '#/components/schemas/Identifier'
-        subjectType:
-          type: string
-        locale:
-          type: string
-        details:
-          type: string
-        isSilent:
-          type: boolean
   responses:
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     NotFound:
       description: Resource not found
       content:
@@ -235,12 +241,6 @@ components:
         Retry-After:
           schema:
             type: integer
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid API key
       content:
         application/json:
           schema:

@@ -1,0 +1,47 @@
+slug: transcend-io
+provider: Transcend
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Data Subject Request
+  spec_file: transcend-io-data-subject-request-api-openapi.yml
+  capability_id: BC-130.50
+  capability_id_l1: BC-130
+  capability_name: Privacy & Data Protection Management
+  confidence: 0.95
+  evidence: POST /v1/data-subject-request 'Submit a Data Subject Request'; GET /v1/data-subject-request/{id}
+    'Retrieve a Data Subject Request by Id'
+  reason: Operations submit and track DSARs with DataSubjectRequest/RequestIdentifier schemas — the textbook
+    realisation of GDPR data subject rights handling under Privacy & Data Protection Management.
+- tag: Consent
+  spec_file: transcend-io-consent-api-openapi.yml
+  capability_id: BC-130.50
+  capability_id_l1: BC-130
+  capability_name: Privacy & Data Protection Management
+  confidence: 0.88
+  evidence: GET /sync getConsentSync 'Get Consent and Preference State'; POST /sync 'Set Consent and Preference
+    State'
+  reason: The tag exposes read/write of consent and preference state on a privacy platform whose description
+    covers 'consent and preference management' — this realises privacy and data protection management
+    (lawful-basis/consent capture).
+- tag: Preferences
+  spec_file: transcend-io-preferences-api-openapi.yml
+  capability_id: BC-130.50
+  capability_id_l1: BC-130
+  capability_name: Privacy & Data Protection Management
+  confidence: 0.82
+  evidence: PUT /v1/preferences 'Upsert Preferences for a Data Subject'; POST /v1/preferences/{partition}/query
+    'Query Preferences in a Partition'
+  reason: Preference records are explicitly keyed to a 'Data Subject' on a privacy/permissioning platform,
+    so this is consent and preference stewardship under privacy and data protection rather than marketing
+    preference management.

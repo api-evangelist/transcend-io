@@ -544,6 +544,9 @@ apis:
   - type: FinOps
     url: https://raw.githubusercontent.com/api-evangelist/transcend-io/main/finops/transcend-io-finops.yml
 common:
+- type: CapabilityMap
+  url: capabilities/transcend-io-capability-edges.yml
+  name: Transcend Business Capability Map
 - type: IssueTracker
   url: https://github.com/transcend-io/cli/issues
 - type: TrustCenter

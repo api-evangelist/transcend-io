@@ -157,57 +157,6 @@ paths:
                   $ref: '#/components/schemas/DataSubjectRequest'
 components:
   schemas:
-    DataSubjectRequestType:
-      type: string
-      enum:
-      - ACCESS
-      - ERASURE
-      - OPT_IN
-      - OPT_OUT
-      - RECTIFICATION
-      - RESTRICTION
-      - AUTO_FULFILL
-    Datapoint:
-      type: object
-      properties:
-        name:
-          type: string
-        path:
-          type: array
-          items:
-            type: string
-        value:
-          description: Arbitrary JSON value associated with the datapoint.
-    DatapointBatch:
-      type: object
-      properties:
-        requestId:
-          type: string
-        dataSiloId:
-          type: string
-        datapoints:
-          type: array
-          items:
-            $ref: '#/components/schemas/Datapoint'
-    File:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        mimeType:
-          type: string
-        size:
-          type: integer
-    Identifier:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Identifier slug (e.g. email, phone, userId).
-        value:
-          type: string
     DataSilo:
       type: object
       properties:
@@ -235,6 +184,14 @@ components:
               isSecret:
                 type: boolean
         outerType:
+          type: string
+    Identifier:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Identifier slug (e.g. email, phone, userId).
+        value:
           type: string
     DataSubjectRequest:
       type: object
@@ -265,6 +222,49 @@ components:
         completedAt:
           type: string
           format: date-time
+    Datapoint:
+      type: object
+      properties:
+        name:
+          type: string
+        path:
+          type: array
+          items:
+            type: string
+        value:
+          description: Arbitrary JSON value associated with the datapoint.
+    DatapointBatch:
+      type: object
+      properties:
+        requestId:
+          type: string
+        dataSiloId:
+          type: string
+        datapoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Datapoint'
+    DataSubjectRequestType:
+      type: string
+      enum:
+      - ACCESS
+      - ERASURE
+      - OPT_IN
+      - OPT_OUT
+      - RECTIFICATION
+      - RESTRICTION
+      - AUTO_FULFILL
+    File:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        mimeType:
+          type: string
+        size:
+          type: integer
   securitySchemes:
     Transcend_API_Key:
       type: apiKey

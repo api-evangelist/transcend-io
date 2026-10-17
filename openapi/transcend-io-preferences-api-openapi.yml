@@ -150,14 +150,6 @@ paths:
           description: Deleted
 components:
   schemas:
-    Identifier:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Identifier slug (e.g. email, phone, userId).
-        value:
-          type: string
     IdentifierMutation:
       type: object
       properties:
@@ -194,6 +186,14 @@ components:
               timestamp:
                 type: string
                 format: date-time
+    Identifier:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Identifier slug (e.g. email, phone, userId).
+        value:
+          type: string
   parameters:
     Partition:
       in: path

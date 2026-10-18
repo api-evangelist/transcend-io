@@ -76,7 +76,7 @@
     - connectors/applications/transcend
     vendor_link: https://transcend.io/
     builder: Fivetran
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: transcend-io-slack-own
   label: Slack (own)

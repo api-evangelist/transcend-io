@@ -1,5 +1,8 @@
-generated: '2026-10-14'
+generated: '2026-10-20'
 method: searched
+source:
+- greenhouse/integrations/greenhouse-integration-edges.yml
+- https://zapier.com/apps/transcend/integrations
 checked:
 - chargebee/integrations/chargebee-integration-edges.yml
 - greenhouse/integrations/greenhouse-integration-edges.yml
@@ -10,8 +13,27 @@ checked:
 - slack/integrations/slack-integration-edges.yml
 - zendesk/integrations/zendesk-integration-edges.yml
 - zoom/integrations/zoom-integration-edges.yml
-source:
-- greenhouse/integrations/greenhouse-integration-edges.yml
+- https://composio.dev/toolkits/transcend-io
+- https://monid.ai/tools/transcend-io
+- https://n8n.io/integrations/transcend-io/
+- https://n8n.io/integrations/transcend/
+- https://zapier.com/apps/transcend-io/integrations
+- https://zapier.com/apps/transcend/integrations
+summary: null
+marketplace_apps:
+- marketplace: zapier
+  channel: ipaas-listing
+  app: transcend
+  url: https://zapier.com/apps/transcend/integrations
+  external_url: https://transcend.io/
+  partner_tier: BRONZE
+  triggers:
+  - key: new_dsr_received
+    label: New DSR Received
+  actions: []
+  searches:
+  - key: find_dsr
+    label: Find DSR
 edges:
 - partner_name: Zapier
   partner: zapier
@@ -166,3 +188,40 @@ edges:
   detected: '2026-10-18'
   detected_by: mirror-platform-listings.py
   category: Zoom app
+- partner_name: Slack
+  partner: slack
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/transcend/integrations/slack
+  direction: third-party
+  category: Team Chat
+  partner_url: https://slack.com/
+- partner_name: Airtable
+  partner: airtable
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/transcend/integrations/airtable
+  direction: third-party
+  category: Databases
+  partner_url: https://airtable.com/
+- partner_name: ActiveCampaign
+  partner: activecampaign
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/transcend/integrations/activecampaign
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.activecampaign.com/?utm_source=unpaid_syndication_website&utm_medium=referral&utm_campaign=zapier_listing
+templates: []

@@ -1,50 +1,18 @@
 generated: '2026-10-14'
 method: searched
 checked:
+- chargebee/integrations/chargebee-integration-edges.yml
 - greenhouse/integrations/greenhouse-integration-edges.yml
 - https://fivetran.com/docs-sitemap.xml
 - https://fivetran.com/docs/connectors/partner-built-program
 - https://zapier.com/api/v4/apps/
 - shopify/integrations/shopify-integration-edges.yml
 - slack/integrations/slack-integration-edges.yml
+- zendesk/integrations/zendesk-integration-edges.yml
 - zoom/integrations/zoom-integration-edges.yml
 source:
 - greenhouse/integrations/greenhouse-integration-edges.yml
 edges:
-- partner_name: Greenhouse (own)
-  partner: greenhouse
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://integrations.greenhouse.com/partners/transcend
-  mirror_of: greenhouse/integrations/greenhouse-integration-edges.yml
-  apps:
-  - Transcend
-  listing_count: 1
-  detected: '2026-10-14'
-  detected_by: mirror-platform-listings.py
-- partner_name: Shopify (own)
-  partner: shopify
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://apps.shopify.com/transcend
-  mirror_of: shopify/integrations/shopify-integration-edges.yml
-  apps:
-  - Transcend
-  listing_count: 1
-  detected: '2026-10-15'
-  detected_by: mirror-platform-listings.py
-  publisher_verified:
-  - Built for Shopify
 - partner_name: Zapier
   partner: zapier
   partner_match: aggregator
@@ -96,6 +64,57 @@ edges:
     builder: Fivetran
   detected_by: sweep-data-integration.py
   first_seen: '2026-10-18'
+- partner_name: Chargebee (own)
+  partner: chargebee
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://marketplace.chargebee.com/apps/['transcend']
+  mirror_of: chargebee/integrations/chargebee-integration-edges.yml
+  apps:
+  - Transcend
+  listing_count: 1
+  detected: '2026-10-19'
+  detected_by: mirror-platform-listings.py
+  category: Privacy
+- partner_name: Greenhouse (own)
+  partner: greenhouse
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://integrations.greenhouse.com/partners/transcend
+  mirror_of: greenhouse/integrations/greenhouse-integration-edges.yml
+  apps:
+  - Transcend
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+- partner_name: Shopify (own)
+  partner: shopify
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://apps.shopify.com/transcend
+  mirror_of: shopify/integrations/shopify-integration-edges.yml
+  apps:
+  - Transcend
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  publisher_verified:
+  - Built for Shopify
 - partner_name: Slack (own)
   partner: slack
   partner_match: mirror
@@ -113,6 +132,23 @@ edges:
   detected: '2026-10-18'
   detected_by: mirror-platform-listings.py
   category: Slack app
+- partner_name: Zendesk (own)
+  partner: zendesk
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.zendesk.com/marketplace/apps/support/387078/transcend/
+  mirror_of: zendesk/integrations/zendesk-integration-edges.yml
+  apps:
+  - Transcend
+  listing_count: 1
+  detected: '2026-10-20'
+  detected_by: mirror-platform-listings.py
+  category: Security, Risk and Compliance
 - partner_name: Zoom (own)
   partner: zoom
   partner_match: mirror

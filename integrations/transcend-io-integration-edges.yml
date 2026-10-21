@@ -19,6 +19,8 @@ checked:
 - https://n8n.io/integrations/transcend/
 - https://zapier.com/apps/transcend-io/integrations
 - https://zapier.com/apps/transcend/integrations
+- opentofu/integrations/opentofu-integration-edges.yml
+- terraform/integrations/terraform-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -86,6 +88,42 @@ edges:
     builder: Fivetran
   detected_by: sweep-data-integration.py
   first_seen: '2026-10-18'
+- partner_name: Slack
+  partner: slack
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/transcend/integrations/slack
+  direction: third-party
+  category: Team Chat
+  partner_url: https://slack.com/
+- partner_name: Airtable
+  partner: airtable
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/transcend/integrations/airtable
+  direction: third-party
+  category: Databases
+  partner_url: https://airtable.com/
+- partner_name: ActiveCampaign
+  partner: activecampaign
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/transcend/integrations/activecampaign
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.activecampaign.com/?utm_source=unpaid_syndication_website&utm_medium=referral&utm_campaign=zapier_listing
 - partner_name: Chargebee (own)
   partner: chargebee
   partner_match: mirror
@@ -188,40 +226,42 @@ edges:
   detected: '2026-10-18'
   detected_by: mirror-platform-listings.py
   category: Zoom app
-- partner_name: Slack
-  partner: slack
-  partner_match: name-exact
-  partner_candidate: null
+- partner_name: OpenTofu (opentofu-registry)
+  partner: opentofu
+  partner_match: mirror
+  mirror_match: register
   type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  relationship: ipaas-bridge
-  evidence: https://zapier.com/apps/transcend/integrations/slack
+  relationship: platform-app
   direction: third-party
-  category: Team Chat
-  partner_url: https://slack.com/
-- partner_name: Airtable
-  partner: airtable
-  partner_match: domain
-  partner_candidate: null
+  channel: partner-built
+  marketplace: opentofu-registry
+  evidence: https://search.opentofu.org/provider/transcend-io/transcend
+  mirror_of: opentofu/integrations/opentofu-integration-edges.yml
+  apps:
+  - transcend-io/transcend
+  listing_count: 1
+  detected: '2026-10-21'
+  detected_by: mirror-platform-listings.py
+  category: infrastructure-as-code provider registry listing
+  badges:
+  - Verified publisher (GitHub domain-verified organization)
+- partner_name: Terraform (terraform-registry)
+  partner: terraform
+  partner_match: mirror
+  mirror_match: register
   type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  relationship: ipaas-bridge
-  evidence: https://zapier.com/apps/transcend/integrations/airtable
+  relationship: platform-app
   direction: third-party
-  category: Databases
-  partner_url: https://airtable.com/
-- partner_name: ActiveCampaign
-  partner: activecampaign
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  relationship: ipaas-bridge
-  evidence: https://zapier.com/apps/transcend/integrations/activecampaign
-  direction: third-party
-  category: Marketing Automation
-  partner_url: https://www.activecampaign.com/?utm_source=unpaid_syndication_website&utm_medium=referral&utm_campaign=zapier_listing
+  channel: partner-built
+  marketplace: terraform-registry
+  evidence: https://registry.terraform.io/providers/transcend-io/transcend
+  mirror_of: terraform/integrations/terraform-integration-edges.yml
+  apps:
+  - transcend-io/transcend
+  listing_count: 1
+  detected: '2026-10-21'
+  detected_by: mirror-platform-listings.py
+  category: infrastructure-as-code provider registry listing
+  badges:
+  - Verified publisher (GitHub domain-verified organization)
 templates: []

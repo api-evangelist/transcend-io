@@ -54,6 +54,45 @@
     builder: Fivetran
   status: not-a-workflow
   arazzo: null
+- slug: transcend-io-slack
+  label: Slack
+  partner: slack
+  partner_name: Slack
+  category: Team Chat
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/transcend/integrations/slack
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: transcend-io-airtable
+  label: Airtable
+  partner: airtable
+  partner_name: Airtable
+  category: Databases
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/transcend/integrations/airtable
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: transcend-io-activecampaign
+  label: ActiveCampaign
+  partner: activecampaign
+  partner_name: ActiveCampaign
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/transcend/integrations/activecampaign
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
 - slug: transcend-io-chargebee-own
   label: Chargebee (own)
   partner: chargebee
@@ -130,42 +169,29 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
-- slug: transcend-io-slack
-  label: Slack
-  partner: slack
-  partner_name: Slack
-  category: Team Chat
+- slug: transcend-io-opentofu-opentofu-registry
+  label: OpenTofu (opentofu-registry)
+  partner: opentofu
+  partner_name: OpenTofu (opentofu-registry)
+  category: infrastructure-as-code provider registry listing
   type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/transcend/integrations/slack
+  marketplace: opentofu-registry
+  channel: partner-built
+  evidence: https://search.opentofu.org/provider/transcend-io/transcend
   source: edge
-  relationship: ipaas-bridge
-  status: pending-generation
+  relationship: platform-app
+  status: not-a-workflow
   arazzo: null
-- slug: transcend-io-airtable
-  label: Airtable
-  partner: airtable
-  partner_name: Airtable
-  category: Databases
+- slug: transcend-io-terraform-terraform-registry
+  label: Terraform (terraform-registry)
+  partner: terraform
+  partner_name: Terraform (terraform-registry)
+  category: infrastructure-as-code provider registry listing
   type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/transcend/integrations/airtable
+  marketplace: terraform-registry
+  channel: partner-built
+  evidence: https://registry.terraform.io/providers/transcend-io/transcend
   source: edge
-  relationship: ipaas-bridge
-  status: pending-generation
-  arazzo: null
-- slug: transcend-io-activecampaign
-  label: ActiveCampaign
-  partner: activecampaign
-  partner_name: ActiveCampaign
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/transcend/integrations/activecampaign
-  source: edge
-  relationship: ipaas-bridge
-  status: pending-generation
+  relationship: platform-app
+  status: not-a-workflow
   arazzo: null

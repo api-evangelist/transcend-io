@@ -93,6 +93,34 @@
   relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
+- slug: transcend-io-index-ventures
+  label: Index Ventures
+  partner: index-ventures
+  partner_name: Index Ventures
+  category: vc portfolio participation
+  type: register
+  channel: standard-directory
+  evidence: https://www.indexventures.com/companies/transcend/
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: Index Ventures companies (indexventures.com/companies/)
+    standard: null
+    spec_file: null
+    role: vc-portfolio-company
+    registered_name: Transcend
+    register_id: https://www.indexventures.com/companies/transcend/
+    register_country: north-america
+    register_website: http://transcend.io
+    matched_domain: transcend.io
+    matched_by: domain
+    signal_note: 'participation only: the venture firm''s own published portfolio lists the company (investment);
+      an ownership and participation record, not conformance or certification'
+    detected_by: sweep-vc-portfolios.py
+    detected: '2026-10-21'
+    sector: data
+  status: not-a-workflow
+  arazzo: null
 - slug: transcend-io-chargebee-own
   label: Chargebee (own)
   partner: chargebee
@@ -195,31 +223,42 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
-- slug: transcend-io-index-ventures
-  label: Index Ventures
-  partner: index-ventures
-  partner_name: Index Ventures
-  category: vc portfolio participation
-  type: register
-  channel: standard-directory
-  evidence: https://www.indexventures.com/companies/transcend/
+- slug: transcend-io-adobe-analytics-own
+  label: Adobe Analytics (own)
+  partner: adobe-analytics
+  partner_name: Adobe Analytics (own)
+  category: Adobe Exchange Experience Cloud listing (Analytics, Experience Platform)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/109813
   source: edge
-  relationship: standard-participant
-  contract_reference:
-    register: Index Ventures companies (indexventures.com/companies/)
-    standard: null
-    spec_file: null
-    role: vc-portfolio-company
-    registered_name: Transcend
-    register_id: https://www.indexventures.com/companies/transcend/
-    register_country: north-america
-    register_website: http://transcend.io
-    matched_domain: transcend.io
-    matched_by: domain
-    signal_note: 'participation only: the venture firm''s own published portfolio lists the company (investment);
-      an ownership and participation record, not conformance or certification'
-    detected_by: sweep-vc-portfolios.py
-    detected: '2026-10-21'
-    sector: data
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: transcend-io-adobe-experience-cloud-own
+  label: Adobe Experience Cloud (own)
+  partner: adobe-experience-cloud
+  partner_name: Adobe Experience Cloud (own)
+  category: Adobe Exchange Experience Cloud listing (Analytics, Experience Platform)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/109813
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: transcend-io-marketo-own
+  label: Marketo (own)
+  partner: marketo
+  partner_name: Marketo (own)
+  category: Adobe Exchange Experience Cloud listing (Marketo Engage)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/103731
+  source: edge
+  relationship: platform-app
   status: not-a-workflow
   arazzo: null

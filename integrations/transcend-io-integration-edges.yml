@@ -27,6 +27,9 @@ checked:
 - https://www.indexventures.com/companies/
 - https://www.sequoiacap.com/our-companies/
 - https://www.sequoiacap.com/sitemap.xml
+- adobe-analytics/integrations/adobe-analytics-integration-edges.yml
+- adobe-experience-cloud/integrations/adobe-experience-cloud-integration-edges.yml
+- marketo/integrations/marketo-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -130,6 +133,33 @@ edges:
   direction: third-party
   category: Marketing Automation
   partner_url: https://www.activecampaign.com/?utm_source=unpaid_syndication_website&utm_medium=referral&utm_campaign=zapier_listing
+- partner_name: Index Ventures
+  partner: index-ventures
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://www.indexventures.com/companies/transcend/
+  category: vc portfolio participation
+  contract_reference:
+    register: Index Ventures companies (indexventures.com/companies/)
+    standard: null
+    spec_file: null
+    role: vc-portfolio-company
+    registered_name: Transcend
+    register_id: https://www.indexventures.com/companies/transcend/
+    register_country: north-america
+    register_website: http://transcend.io
+    matched_domain: transcend.io
+    matched_by: domain
+    signal_note: 'participation only: the venture firm''s own published portfolio lists the company (investment);
+      an ownership and participation record, not conformance or certification'
+    detected_by: sweep-vc-portfolios.py
+    detected: '2026-10-21'
+    sector: data
+  detected_by: sweep-vc-portfolios.py
+  first_seen: '2026-10-21'
 - partner_name: Chargebee (own)
   partner: chargebee
   partner_match: mirror
@@ -270,31 +300,55 @@ edges:
   category: infrastructure-as-code provider registry listing
   badges:
   - Verified publisher (GitHub domain-verified organization)
-- partner_name: Index Ventures
-  partner: index-ventures
-  partner_match: register
-  type: register
-  channel: standard-directory
-  relationship: standard-participant
-  direction: partner-built
-  evidence: https://www.indexventures.com/companies/transcend/
-  category: vc portfolio participation
-  contract_reference:
-    register: Index Ventures companies (indexventures.com/companies/)
-    standard: null
-    spec_file: null
-    role: vc-portfolio-company
-    registered_name: Transcend
-    register_id: https://www.indexventures.com/companies/transcend/
-    register_country: north-america
-    register_website: http://transcend.io
-    matched_domain: transcend.io
-    matched_by: domain
-    signal_note: 'participation only: the venture firm''s own published portfolio lists the company (investment);
-      an ownership and participation record, not conformance or certification'
-    detected_by: sweep-vc-portfolios.py
-    detected: '2026-10-21'
-    sector: data
-  detected_by: sweep-vc-portfolios.py
-  first_seen: '2026-10-21'
+- partner_name: Adobe Analytics (own)
+  partner: adobe-analytics
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://exchange.adobe.com/apps/ec/109813
+  mirror_of: adobe-analytics/integrations/adobe-analytics-integration-edges.yml
+  apps:
+  - Transcend
+  listing_count: 1
+  detected: '2026-10-23'
+  detected_by: mirror-platform-listings.py
+  category: Adobe Exchange Experience Cloud listing (Analytics, Experience Platform)
+- partner_name: Adobe Experience Cloud (own)
+  partner: adobe-experience-cloud
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://exchange.adobe.com/apps/ec/109813
+  mirror_of: adobe-experience-cloud/integrations/adobe-experience-cloud-integration-edges.yml
+  apps:
+  - Transcend
+  listing_count: 1
+  detected: '2026-10-23'
+  detected_by: mirror-platform-listings.py
+  category: Adobe Exchange Experience Cloud listing (Analytics, Experience Platform)
+- partner_name: Marketo (own)
+  partner: marketo
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://exchange.adobe.com/apps/ec/103731
+  mirror_of: marketo/integrations/marketo-integration-edges.yml
+  apps:
+  - Transcend - Privacy Request Automation
+  listing_count: 1
+  detected: '2026-10-23'
+  detected_by: mirror-platform-listings.py
+  category: Adobe Exchange Experience Cloud listing (Marketo Engage)
 templates: []

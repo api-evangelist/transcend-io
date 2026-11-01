@@ -1,4 +1,4 @@
-# Transcend (transcend-io)
+# Transcend
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,166 +66,185 @@
 
 Transcend is a privacy and data permissioning platform that helps enterprises decide in real time whether customer data can be used for a given purpose. The platform spans data discovery and inventory, data subject request automation, consent and preference management, privacy assessments, and an AI governance layer that enforces policies at the source. Transcend's Sombra security gateway runs inside customer environments so Transcend itself never accesses customer data or API keys. Developers integrate via a REST API documented with OpenAPI, a GraphQL API for non-personal data and configuration tasks, an official CLI distributed on npm, and a transcend.yml configuration file that lets teams manage their data map as code. The platform serves AI, consumer, healthcare, fintech, media, and B2B enterprises.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/transcend-io/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/transcend-io/refs/heads/main/apis.yml)
+**Areas:** Transcend · Privacy · Data Governance · Consent · Preference Management · DSR · Data Inventory · AI Governance · GDPR · CCPA · Compliance · Webhook
 
-## Scope
+## Transcend on APIs.io
 
-- **Type:** Index
-- **Position:** Provider
-- **Access:** 3rd-Party
+Everything profiled for Transcend is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/transcend-io/](https://apis.io/providers/transcend-io/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (11)
 
-- Transcend
-- Privacy
-- Data Governance
-- Consent
-- Preference Management
-- DSR
-- Data Inventory
-- AI Governance
-- GDPR
-- CCPA
-- Compliance
-- Webhooks
-- GraphQL
-- MCP
-- SDK
-- Terraform
-- Helm
+- [Transcend GraphQL API](https://apis.io/apis/transcend-io/transcend-graphql-api/) — GraphQL API and Developer Tools wrapper for non-personal data tasks such as creating data silos, account management, and other configuration operations on…
+- [Transcend CLI](https://apis.io/apis/transcend-io/transcend-cli/) — Official command line interface for Transcend, distributed on npm as @transcend-io/cli. Supports schema sync, transcend.yml-based data map definitions, and…
+- [Transcend MCP Servers](https://apis.io/apis/transcend-io/transcend-mcp/) — Model Context Protocol servers published under @transcend-io/* so AI agents can manage Transcend privacy operations. Includes per-domain servers for admin,…
+- [Transcend Consent API](https://apis.io/apis/transcend-io/transcend-io-consent-api/) — Client-side consent sync used by the Consent Manager.
+- [Transcend Custom Integration API](https://apis.io/apis/transcend-io/transcend-io-custom-integration-api/) — Stream files, push datapoints, and respond to access, erasure, opt-in, and opt-out requests.
+- [Transcend Data Subject Request API](https://apis.io/apis/transcend-io/transcend-io-data-subject-request-api/) — Submit, poll, and download data subject requests.
+- [Transcend LLM Classifier API](https://apis.io/apis/transcend-io/transcend-io-llm-classifier-api/) — Text classification and Named Entity Recognition for unstructured data discovery.
+- [Transcend Preferences API](https://apis.io/apis/transcend-io/transcend-io-preferences-api/) — Server-side preference store CRUD and query operations.
+- [Transcend Preflight API](https://apis.io/apis/transcend-io/transcend-io-preflight-api/) — Enrich identifiers before downstream DSR processing.
+- [Transcend Public Keys API](https://apis.io/apis/transcend-io/transcend-io-public-keys-api/) — Public JWT signing keys exposed by the Sombra gateway.
+- [Transcend API](https://apis.io/apis/transcend-io/transcend-io-transcend-api-api/) — The Transcend API API from Transcend — 0 operation(s) for transcend api.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-05-23
-- **Modified:** 2026-05-25
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### GraphQL (1)
 
-### Transcend API
+GraphQL schemas.
 
-REST API that powers Transcend's privacy operations, including data subject requests, preflight identifier enrichment, custom integrations for access and erasure, preferences and consent management, an LLM classifier for NER and text classification, public JWT signing keys, and webhooks for DSR jobs, preflight requests, and consent manager deployment. The API is described by an OpenAPI specification and is available on both EU and US backends, with the EU backend as the CLI default.
+- [Transcend GraphQL API](https://apis.io/graphqls/transcend-io/transcend-io-graphql/)
 
-- **Human URL:** [https://docs.transcend.io/docs/api-reference](https://docs.transcend.io/docs/api-reference)
-- **Base URL:** `https://api.transcend.io`
+#### JSON Schema (4)
 
-#### Tags
+The data models the API reads and writes.
 
-- DSR
-- Consent
-- Preferences
-- Webhooks
-- LLM Classifier
-- Custom Integration
+- [Classification](https://apis.io/schemas/transcend-io/transcend-classification/)
+- [DataSilo](https://apis.io/schemas/transcend-io/transcend-data-silo/)
+- [DataSubjectRequest](https://apis.io/schemas/transcend-io/transcend-data-subject-request/)
+- [PreferenceRecord](https://apis.io/schemas/transcend-io/transcend-preference-record/)
 
-#### Properties
+#### JSON Structure (2)
 
-- [Documentation](https://docs.transcend.io/docs/api-reference)
-- [OpenAPI](https://docs.transcend.io/api/oas.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Open A P I30](https://docs.transcend.io/api/oas.json?v=3.0)
-- [U S Backend](https://api.us.transcend.io)
-- [Webhooks](https://docs.transcend.io/docs/api-reference)
-- [Status](https://status.transcend.io)
-- [Sign Up](https://app.transcend.io/login)
-- [Local Open A P I](https://raw.githubusercontent.com/api-evangelist/transcend-io/main/openapi/transcend-io-openapi.yml)
-- [Spectral Rules](https://raw.githubusercontent.com/api-evangelist/transcend-io/main/rules/transcend-rules.yml)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-schema/transcend-data-subject-request-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-schema/transcend-preference-record-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](https://raw.githubusercontent.com/api-evangelist/transcend-io/main/json-ld/transcend-io-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Vocabulary](https://raw.githubusercontent.com/api-evangelist/transcend-io/main/vocabulary/transcend-io-vocabulary.yml)
-- [Plans](https://raw.githubusercontent.com/api-evangelist/transcend-io/main/plans/transcend-io-plans-pricing.yml)
-- [Rate Limits](https://raw.githubusercontent.com/api-evangelist/transcend-io/main/rate-limits/transcend-io-rate-limits.yml)
-- [Fin Ops](https://raw.githubusercontent.com/api-evangelist/transcend-io/main/finops/transcend-io-finops.yml)
+Data models expressed in JSON Structure.
 
-### Transcend GraphQL API
+- [Transcend Data Subject Request Structure](https://apis.io/json-structure/transcend-io/transcend-data-subject-request-structure/)
+- [Transcend Preference Record Structure](https://apis.io/json-structure/transcend-io/transcend-preference-record-structure/)
 
-GraphQL API and Developer Tools wrapper for non-personal data tasks such as creating data silos, account management, and other configuration operations on the Transcend platform.
+#### JSON-LD (1)
 
-- **Human URL:** [https://docs.transcend.io/docs/api-reference](https://docs.transcend.io/docs/api-reference)
+Linked-data contexts for the provider's vocabulary.
 
-#### Tags
+- [Transcend Io Context](https://apis.io/jsonld/transcend-io/transcend-io-context/)
 
-- GraphQL
-- Data Silos
-- Configuration
-- Admin
+#### Vocabulary (1)
 
-#### Properties
+The provider's domain terms, defined.
 
-- [Documentation](https://docs.transcend.io/docs/api-reference)
-- [Graph Q L](https://docs.transcend.io/docs/api-reference)
+- [Transcend Privacy and Data Permissioning Vocabulary](https://apis.io/vocabularies/transcend-io/transcend-io-vocabulary/)
 
-### Transcend CLI
+#### Examples (8)
 
-Official command line interface for Transcend, distributed on npm as @transcend-io/cli. Supports schema sync, transcend.yml-based data map definitions, and a wide range of platform operations. Defaults to the EU backend, with a flag to target the US backend.
+Example requests and responses.
 
-- **Human URL:** [https://github.com/transcend-io/cli](https://github.com/transcend-io/cli)
+- [Transcend Classify Text Example](https://apis.io/examples/transcend-io/transcend-classify-text-example/)
+- [Transcend Consent Sync Example](https://apis.io/examples/transcend-io/transcend-consent-sync-example/)
+- [Transcend Data Silo Example](https://apis.io/examples/transcend-io/transcend-data-silo-example/)
+- [Transcend Enrich Identifiers Example](https://apis.io/examples/transcend-io/transcend-enrich-identifiers-example/)
+- [Transcend Get Dsr Example](https://apis.io/examples/transcend-io/transcend-get-dsr-example/)
+- [Transcend Submit Dsr Example](https://apis.io/examples/transcend-io/transcend-submit-dsr-example/)
+- [Transcend Upsert Preferences Example](https://apis.io/examples/transcend-io/transcend-upsert-preferences-example/)
+- [Transcend Webhook Dsr Job Example](https://apis.io/examples/transcend-io/transcend-webhook-dsr-job-example/)
 
-#### Tags
+#### Collections (8)
 
-- CLI
-- npm
-- Configuration
-- Data Map
+Postman and Open Collection request collections.
 
-#### Properties
+- [Transcend Consent API](https://apis.io/collections/transcend-io/open-transcend-io-consent-api/)
+- [Transcend Custom Integration API](https://apis.io/collections/transcend-io/open-transcend-io-custom-integration-api/)
+- [Transcend Data Subject Request API](https://apis.io/collections/transcend-io/open-transcend-io-data-subject-request-api/)
+- [Transcend LLM Classifier API](https://apis.io/collections/transcend-io/open-transcend-io-llm-classifier-api/)
+- [Transcend Preferences API](https://apis.io/collections/transcend-io/open-transcend-io-preferences-api/)
+- [Transcend Preflight API](https://apis.io/collections/transcend-io/open-transcend-io-preflight-api/)
+- [Transcend Public Keys API](https://apis.io/collections/transcend-io/open-transcend-io-public-keys-api/)
+- [Transcend Transcend API API](https://apis.io/collections/transcend-io/open-transcend-io-transcend-api-api/)
 
-- [Source Code](https://github.com/transcend-io/cli)
-- [Package Manager](https://www.npmjs.com/package/@transcend-io/cli)
-- [Documentation](https://docs.transcend.io/docs/api-reference)
+#### Governance rules (2)
 
-### Transcend MCP Servers
+Spectral rulesets for the provider's contracts.
 
-Model Context Protocol servers published under @transcend-io/* so AI agents can manage Transcend privacy operations. Includes per-domain servers for admin, assessments, consent, data discovery, DSR, inventory, preferences, and workflows, plus a meta MCP package that aggregates them. Distributed from the transcend-io/tools monorepo.
+- [Transcend — jsonschema rules](https://apis.io/rules/transcend-io/transcend-io-jsonschema-spectral-rules/)
+- [Transcend — transcend rules](https://apis.io/rules/transcend-io/transcend-rules/)
 
-- **Human URL:** [https://github.com/transcend-io/tools/tree/main/packages/mcp](https://github.com/transcend-io/tools/tree/main/packages/mcp)
+#### Security (3)
 
-#### Tags
+Authentication, trust centre, and vulnerability disclosure.
 
-- MCP
-- AI Agents
-- Tooling
+- [Transcend Io Domain Security](https://apis.io/security/transcend-io/transcend-io-domain-security/)
+- [Transcend Io Trust Center](https://apis.io/security/transcend-io/transcend-io-trust-center/)
+- [Transcend Io Vulnerability Disclosure](https://apis.io/security/transcend-io/transcend-io-vulnerability-disclosure/)
 
-#### Properties
+#### Plans and pricing (1)
 
-- [Source Code](https://github.com/transcend-io/tools/tree/main/packages/mcp)
-- [Package Manager](https://www.npmjs.com/package/@transcend-io/mcp)
-- [Tools](https://github.com/transcend-io/tools/tree/main/packages/mcp/mcp-server-admin)
-- [Tools](https://github.com/transcend-io/tools/tree/main/packages/mcp/mcp-server-assessment)
-- [Tools](https://github.com/transcend-io/tools/tree/main/packages/mcp/mcp-server-consent)
-- [Tools](https://github.com/transcend-io/tools/tree/main/packages/mcp/mcp-server-discovery)
-- [Tools](https://github.com/transcend-io/tools/tree/main/packages/mcp/mcp-server-dsr)
-- [Tools](https://github.com/transcend-io/tools/tree/main/packages/mcp/mcp-server-inventory)
-- [Tools](https://github.com/transcend-io/tools/tree/main/packages/mcp/mcp-server-preferences)
-- [Tools](https://github.com/transcend-io/tools/tree/main/packages/mcp/mcp-server-workflows)
+Published plans, tiers and prices.
 
-## Common Properties
+- [Transcend Io Plans Pricing](https://apis.io/plans/transcend-io/transcend-io-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Transcend Io Rate Limits](https://apis.io/rate-limits/transcend-io/transcend-io-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Transcend Io Finops](https://apis.io/finops/transcend-io/transcend-io-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://transcend.io/)
 - [Documentation](https://docs.transcend.io/docs)
-- [OpenAPI](https://docs.transcend.io/api/oas.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Source Code](https://github.com/transcend-io)
-- [GitHub Organization](https://github.com/transcend-io)
-- [Status](https://status.transcend.io)
-- [Sign Up](https://app.transcend.io/login)
-- [L L Ms Txt](https://docs.transcend.io/llms.txt)
-- [C L I](https://github.com/transcend-io/tools/tree/main/packages/cli)
-- [SDK](https://github.com/transcend-io/tools/tree/main/packages/sdk)
-- [Tools](https://github.com/transcend-io/tools)
-- [Tools](https://github.com/transcend-io/tools/tree/main/packages/mcp/mcp)
-- [Tools](https://github.com/transcend-io/terraform-provider-transcend)
-- [Tools](https://github.com/transcend-io/terraform-aws-sombra)
-- [Tools](https://github.com/transcend-io/helm-charts)
-- [Tools](https://github.com/transcend-io/consent-manager-ui)
-- [Tools](https://github.com/transcend-io/Transcend-spm-sdk)
-- [Code Examples](https://github.com/transcend-io/examples)
-- [Privacy Types](https://github.com/transcend-io/tools/tree/main/packages/privacy-types)
-- [Press Releases](https://transcend.io/press)
+- [Pricing](https://transcend.io/pricing)
 - [Blog](https://transcend.io/blog)
 - [Security](https://transcend.io/security)
-- [Pricing](https://transcend.io/pricing)
-- [Customers](https://transcend.io/customers)
+- [GitHub](https://github.com/transcend-io)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 44.3** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 65.2 |
+| Contract quality | 60.3 |
+| Contract governance | 27.3 |
+| Operational transparency | 28.9 |
+| Developer ergonomics | 26.2 |
+| Access clarity | 39.5 |
+
+**Agent readiness 26.7** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | verified |
+| Event Surface Described | yes |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 21.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/transcend-io/](https://apis.io/providers/transcend-io/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Transcend: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/transcend-io/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
